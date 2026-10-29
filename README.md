@@ -31,6 +31,34 @@
 | "Keep version two, change only the title" | Only that layout re-rendered; approved imagery untouched |
 | "Post it to YouTube and TikTok" | Per-platform title, caption and hashtags, spec checks, and your OK before anything goes out |
 
+## Showcase
+
+Examples are real outputs from projects run with these plugins; some steps used tools built inside each project. Channel names are omitted. Images are downscaled from the delivered files.
+
+**One layout, many episodes.** A money explainer series: each episode got a 3840x2160 thumbnail and a 2160x3840 Shorts cover from the same layout, with only the number, question and stamp changing. Every episode's package keeps its own `status.md` with the copy, file hashes and next step.
+
+| Thumbnail (16:9) | Shorts cover (9:16) |
+|---|---|
+| <img src="assets/showcase/explainer-thumbnail.jpg" alt="Money explainer thumbnail: a statement card reading $2,528, a red stamp reading 86% interest, and the question Buys house?" width="560"> | <img src="assets/showcase/explainer-shorts-cover.jpg" alt="The same episode as a vertical Shorts cover: statement card, question and stamp stacked" width="180"> |
+
+All 56 thumbnails of that series, and eight of its Shorts covers:
+
+<img src="assets/showcase/explainer-shorts-grid.jpg" alt="Grid of 56 money explainer thumbnails in one layout: a statement card with a big number, a stamped result and a one-line question" width="100%">
+
+<img src="assets/showcase/explainer-shorts-covers.jpg" alt="Eight vertical Shorts covers in a row, each with a statement card, a highlighted question and a stamped result" width="100%">
+
+**Sleep stories.** Thumbnails for six of the long episodes (1280x720), laid out in Canva through the `canva` skill: one title style and position over a different still each time.
+
+<img src="assets/showcase/sleep-story-thumbnails.jpg" alt="Six sleep-story thumbnails in a row of three by two: a harbour quay at dusk, a fog-bound pier, a blackberry bowl on a cliff path, a sleeping cat, oil cans on a shelf, hands on an open book" width="100%">
+
+**Science explainer.** A 1280x720 thumbnail rendered by the `compose` skill from a JSON spec: a generated still, a short accent rule and a two-word title.
+
+<img src="assets/showcase/science-explainer-thumbnail.jpg" alt="Science explainer thumbnail: the words Ring Shade over a dusk street, where a person stands in the shadow of a planetary ring cutting across the sky" width="560">
+
+**Animated fable.** Eight short episodes share one card layout: a numbered label, the title on a taped card, and the episode's own art behind it.
+
+<img src="assets/showcase/fable-thumbnail.jpg" alt="Animated fable thumbnail in a risograph style: a taped card reading fable no. 03, The Star Nursery, beside an orange halftone star" width="560">
+
 ## Quick start
 
 **1. Install the plugins** in Claude Code:
