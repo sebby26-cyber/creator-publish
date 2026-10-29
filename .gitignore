@@ -37,3 +37,7 @@ __pycache__/
 
 # Plugin listing icons are the one PNG exception (rendered from assets/brand/icons/*.svg)
 !plugins/*/.claude-plugin/icon.png
+
+# README showcase: small, metadata-stripped example outputs (the one media folder that is committed)
+!assets/showcase/
+!assets/showcase/**
