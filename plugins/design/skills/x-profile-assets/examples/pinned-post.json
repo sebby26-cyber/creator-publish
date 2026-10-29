@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "x-pinned-post",
+ "description": "Pinned-post image, 16:9 at 1600x900: the first thing a profile visitor sees. A 'start here' card for the show (or the latest episode): show name, one-line promise, where to listen or watch. Few large words, inside the centre half; no schedule, follower counts or claims the owner has not confirmed. Brand-neutral placeholder; pair with alt text. Refresh when a new episode ships.",
+ "canvas": { "width": 1600, "height": 900, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "pinned-post-1600x900.png" },
+ "layers": [
+  { "id": "glow", "type": "shape", "shape": "circle", "x": 1100, "y": -300, "width": 900, "height": 900, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,196,61,0.28)" }, { "offset": 1, "color": "rgba(255,196,61,0)" } ] } },
+  { "id": "kicker", "type": "text", "text": "START HERE", "font": { "family": "Inter", "weight": 700 }, "size": 34, "minSize": 24, "letterSpacing": 6, "color": "#ffc43d", "align": "center", "x": 400, "y": 250, "width": 800, "height": 50 },
+  { "id": "name", "type": "text", "text": "Show Name", "font": { "family": "Anton" }, "size": 150, "minSize": 90, "transform": "uppercase", "lineHeight": 1.0, "color": "#f6f4ef", "align": "center", "valign": "middle", "x": 400, "y": 310, "width": 800, "height": 180 },
+  { "id": "promise", "type": "text", "text": "One line that says what the show is.", "font": { "family": "Inter", "weight": 400 }, "size": 44, "minSize": 30, "color": "#d7dbe3", "align": "center", "x": 400, "y": 510, "width": 800, "height": 60 },
+  { "id": "where", "type": "text", "text": "Watch on YouTube", "font": { "family": "Inter", "weight": 700 }, "size": 34, "minSize": 24, "color": "#f6f4ef", "align": "center", "valign": "middle", "background": { "color": "rgba(255,255,255,0.10)", "padding": [10, 22], "radius": 10 }, "x": 550, "y": 600, "width": 500, "height": 60 }
+ ]
+}

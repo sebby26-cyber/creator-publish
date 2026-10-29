@@ -1,0 +1,15 @@
+{
+ "brand.bg": "#101418",
+ "brand.primary": "#ff5a36",
+ "brand.on.primary": "#101418",
+ "brand.accent": "#ffd23f",
+ "brand.text": "#ffffff",
+ "brand.text.muted": "#c9ced6",
+ "brand.font.display": "Anton",
+ "brand.font.body": "Inter",
+ "copy.kicker": "New this week",
+ "copy.headline": "The spring menu is here",
+ "copy.body": "Twelve new plates, built around what the market had this morning.",
+ "copy.cta": "Book a table",
+ "copy.handle": "@yourstudio"
+}

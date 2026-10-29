@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "apple-podcasts-cover-ui-zones",
+ "description": "Review image only, never uploaded: the show cover at 1000 px with the bottom fifth shaded. Apple's template marks a safe area and warns that UI can cover art; the 'bottom fifth' band is a working rule (unverified), not an Apple figure. Pass: no title text or key art inside the band. Put this spec in previews/.",
+ "canvas": { "width": 1000, "height": 1000, "background": "#1c1c1e" },
+ "output": { "path": "cover-ui-zones.png", "format": "png" },
+ "layers": [
+  { "id": "cover", "type": "image", "src": "../show-cover-3000.jpg", "x": 0, "y": 0, "width": 1000, "height": 1000, "fit": "cover" },
+  { "id": "bottom-fifth", "type": "shape", "shape": "rect", "x": 0, "y": 800, "width": 1000, "height": 200, "fill": "rgba(220,40,40,0.35)", "stroke": { "color": "#ff3b30", "width": 4 } },
+  { "id": "label", "type": "text", "text": "bottom fifth: UI may cover this (working rule)", "font": { "family": "Inter", "weight": 700 }, "size": 26, "minSize": 16, "color": "#ffffff", "align": "center", "valign": "middle", "x": 20, "y": 930, "width": 960, "height": 50, "maxLines": 1 }
+ ]
+}

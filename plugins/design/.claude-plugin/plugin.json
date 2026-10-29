@@ -1,0 +1,25 @@
+{
+ "name": "design",
+ "version": "0.2.0",
+ "description": "Design briefs for static social graphics: quote cards and text graphics, infographics and data viz, YouTube thumbnails, YouTube channel assets (banner, profile picture, watermark, end-screen guide, channel copy), Apple Podcasts show assets (show cover, episode art, small-size previews, show copy), Spotify show assets (feed cover reuse, video-podcast thumbnail, small-size previews, show copy), X profile and post assets (header, profile photo, post and pinned images, alt text, X copy), Pinterest pins, and a brand template system. Writes the brief and a visual-composer composition spec; rendering is compose (or Canva). Mostly adapted from social-media-skills (MIT).",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "design",
+  "brief",
+  "quote-card",
+  "thumbnail",
+  "youtube-banner",
+  "end-screen",
+  "apple-podcasts",
+  "podcast-cover",
+  "spotify",
+  "x-header",
+  "pinterest",
+  "infographic",
+  "templates"
+ ],
+ "license": "GPL-3.0-or-later AND MIT"
+}

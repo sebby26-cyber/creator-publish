@@ -1,0 +1,25 @@
+{
+  "project_version": 2,
+  "slug": "<slug>",
+  "name": "<Project name>",
+  "notes": "",
+  "media_root": null,
+  "brand": {
+    "name": null,
+    "palette": {},
+    "fonts": { "display": "Anton", "body": "Inter" },
+    "logos": []
+  },
+  "brand_assets": [],
+  "models": { "image": null, "edit": null },
+  "tools": { "prefer": [], "avoid": [] },
+  "providers": { "default": null },
+  "budget": { "credits": { "per_step_max": null, "per_run_max": null } },
+  "approvals": { "paid_steps": "ask" },
+  "output": { "formats": ["png"], "variants": 3, "platforms": [], "dir": null },
+  "youtube": { "handle": null, "watermark_display": null, "end_screen_seconds": null, "end_screen_elements": [] },
+  "apple_podcasts": { "show_title": null, "author": null, "category": null, "category_secondary": null, "explicit": null, "type": null, "host": null },
+  "spotify": { "hosting": null, "video": null, "trailer": null },
+  "x": { "handle": null, "display_name": null, "bio": null, "pinned_post": null },
+  "locked": []
+}

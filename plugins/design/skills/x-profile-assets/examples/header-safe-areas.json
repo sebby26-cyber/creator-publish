@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "name": "x-header-safe-areas",
+ "description": "Review overlay for a rendered 1500x500 X header: red bands = the top and bottom 60 px X says may be cropped (official); pink circle and box = where the profile photo sits on the profile page (unverified working values); amber corners = app buttons (unverified); green = working text-safe box x 420-1440, y 80-420. Put this spec next to header-1500x500.png (image paths are relative to the spec). Review image only, never uploaded.",
+ "canvas": { "width": 1500, "height": 500, "background": "#000000" },
+ "output": { "path": "previews/header-safe-areas.png" },
+ "layers": [
+  { "id": "header", "type": "image", "src": "header-1500x500.png", "x": 0, "y": 0, "width": 1500, "height": 500, "fit": "fill" },
+  { "id": "crop-top", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 1500, "height": 60, "fill": "rgba(255,77,77,0.35)" },
+  { "id": "crop-bottom", "type": "shape", "shape": "rect", "x": 0, "y": 440, "width": 1500, "height": 60, "fill": "rgba(255,77,77,0.35)" },
+  { "id": "avatar-box", "type": "shape", "shape": "rect", "x": 0, "y": 300, "width": 400, "height": 200, "stroke": { "color": "#ff5c8a", "width": 4, "dash": [16, 8] } },
+  { "id": "avatar-circle", "type": "shape", "shape": "circle", "x": 40, "y": 333, "width": 335, "height": 335, "fill": "rgba(255,92,138,0.30)", "stroke": { "color": "#ff5c8a", "width": 4 } },
+  { "id": "corner-left", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 120, "height": 120, "stroke": { "color": "#ffc43d", "width": 4, "dash": [10, 6] } },
+  { "id": "corner-right", "type": "shape", "shape": "rect", "x": 1380, "y": 0, "width": 120, "height": 120, "stroke": { "color": "#ffc43d", "width": 4, "dash": [10, 6] } },
+  { "id": "text-safe", "type": "shape", "shape": "rect", "x": 420, "y": 80, "width": 1020, "height": 340, "stroke": { "color": "#3ddc84", "width": 5 } },
+  { "id": "label-safe", "type": "text", "text": "Text-safe x 420-1440, y 80-420", "font": { "family": "Inter", "weight": 700 }, "size": 22, "fit": "none", "color": "#ffffff", "background": { "color": "rgba(20,110,60,0.85)", "padding": [6, 10], "radius": 4 }, "x": 430, "y": 428, "width": 520 },
+  { "id": "label-avatar", "type": "text", "text": "Profile photo", "font": { "family": "Inter", "weight": 700 }, "size": 22, "fit": "none", "color": "#ffffff", "background": { "color": "rgba(140,30,70,0.85)", "padding": [6, 10], "radius": 4 }, "x": 130, "y": 262, "width": 240 },
+  { "id": "label-crop", "type": "text", "text": "May be cropped (60 px)", "font": { "family": "Inter", "weight": 700 }, "size": 22, "fit": "none", "color": "#ffffff", "background": { "color": "rgba(140,20,20,0.85)", "padding": [6, 10], "radius": 4 }, "x": 1100, "y": 16, "width": 270 }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "youtube-avatar-98-dark-light",
+ "description": "Review image: the rendered profile picture at YouTube's 98x98 display size, circle-cropped, on the dark-mode (#0f0f0f) and light-mode (#ffffff) page backgrounds. Put this spec next to profile-picture-800.png. Review image only, never uploaded.",
+ "canvas": { "width": 560, "height": 220, "background": "#ffffff" },
+ "output": { "path": "previews/avatar-98-dark-vs-light.png" },
+ "layers": [
+  { "id": "dark-panel", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 280, "height": 220, "fill": "#0f0f0f" },
+  { "id": "avatar-dark", "type": "image", "src": "profile-picture-800.png", "x": 91, "y": 40, "width": 98, "height": 98, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "avatar-light", "type": "image", "src": "profile-picture-800.png", "x": 371, "y": 40, "width": 98, "height": 98, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "label-dark", "type": "text", "text": "98 px, dark mode", "font": { "family": "Inter", "weight": 700 }, "size": 18, "color": "#f1f1f1", "align": "center", "x": 0, "y": 168, "width": 280 },
+  { "id": "label-light", "type": "text", "text": "98 px, light mode", "font": { "family": "Inter", "weight": 700 }, "size": 18, "color": "#0f0f0f", "align": "center", "x": 280, "y": 168, "width": 280 }
+ ]
+}

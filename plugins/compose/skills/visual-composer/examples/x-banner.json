@@ -1,0 +1,13 @@
+{
+ "version": 1,
+ "name": "x-banner",
+ "description": "1500x500 X/Twitter header, vector-only, JPEG output.",
+ "canvas": { "width": 1500, "height": 500, "background": "#0b132b" },
+ "output": { "path": "x-banner.jpg", "quality": 90 },
+ "layers": [
+  { "type": "shape", "shape": "polygon", "points": [ [ 950, 0 ], [ 1500, 0 ], [ 1500, 500 ], [ 1150, 500 ] ], "fill": { "type": "linear", "angle": 135, "stops": [ { "offset": 0, "color": "#5bc0be" }, { "offset": 1, "color": "#3a506b" } ] } },
+  { "type": "shape", "shape": "rect", "x": 1210, "y": 160, "width": 180, "height": 180, "radius": 40, "fill": "rgba(255,255,255,0.15)", "rotate": 12 },
+  { "id": "name", "type": "text", "text": "Deterministic graphics", "font": { "family": "Anton" }, "size": 96, "transform": "uppercase", "color": "#ffffff", "x": 90, "y": 150, "width": 900, "height": 120, "valign": "middle" },
+  { "id": "tag", "type": "text", "text": "Same spec, same pixels. Every time.", "font": { "family": "Inter" }, "size": 36, "color": "#c5d1eb", "x": 92, "y": 300, "width": 900 }
+ ]
+}

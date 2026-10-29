@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "name": "x-profile-mockup",
+ "description": "Review image: the header and profile photo placed as an X profile shows them. Left, desktop web column (header 600x200, photo about 134 px at 16 px from the left, half over the header). Right, phone app (header 390x130, photo about 80 px). Layout values are measured working values, not X figures (unverified). Edit the name and handle lines to the project's. Put this spec next to header-1500x500.png and profile-photo-400.png. Review image only, never uploaded.",
+ "canvas": { "width": 1110, "height": 400, "background": "#000000" },
+ "output": { "path": "previews/profile-mockup.png" },
+ "layers": [
+  { "id": "d-header", "type": "image", "src": "header-1500x500.png", "x": 20, "y": 20, "width": 600, "height": 200, "fit": "fill" },
+  { "id": "d-ring", "type": "shape", "shape": "circle", "x": 32, "y": 149, "width": 142, "height": 142, "fill": "#000000" },
+  { "id": "d-photo", "type": "image", "src": "profile-photo-400.png", "x": 36, "y": 153, "width": 134, "height": 134, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "d-name", "type": "text", "text": "Show Name", "font": { "family": "Inter", "weight": 700 }, "size": 22, "fit": "none", "color": "#e7e9ea", "x": 36, "y": 300, "width": 560 },
+  { "id": "d-handle", "type": "text", "text": "@showhandle", "font": { "family": "Inter", "weight": 400 }, "size": 16, "fit": "none", "color": "#71767b", "x": 36, "y": 332, "width": 560 },
+  { "id": "d-label", "type": "text", "text": "Desktop web", "font": { "family": "Inter", "weight": 700 }, "size": 14, "fit": "none", "color": "#71767b", "x": 470, "y": 370, "width": 150 },
+  { "id": "m-header", "type": "image", "src": "header-1500x500.png", "x": 700, "y": 20, "width": 390, "height": 130, "fit": "fill" },
+  { "id": "m-ring", "type": "shape", "shape": "circle", "x": 713, "y": 107, "width": 86, "height": 86, "fill": "#000000" },
+  { "id": "m-photo", "type": "image", "src": "profile-photo-400.png", "x": 716, "y": 110, "width": 80, "height": 80, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "m-back", "type": "shape", "shape": "circle", "x": 708, "y": 28, "width": 32, "height": 32, "fill": "rgba(0,0,0,0.6)" },
+  { "id": "m-more", "type": "shape", "shape": "circle", "x": 1050, "y": 28, "width": 32, "height": 32, "fill": "rgba(0,0,0,0.6)" },
+  { "id": "m-name", "type": "text", "text": "Show Name", "font": { "family": "Inter", "weight": 700 }, "size": 20, "fit": "none", "color": "#e7e9ea", "x": 716, "y": 204, "width": 370 },
+  { "id": "m-handle", "type": "text", "text": "@showhandle", "font": { "family": "Inter", "weight": 400 }, "size": 15, "fit": "none", "color": "#71767b", "x": 716, "y": 234, "width": 370 },
+  { "id": "m-label", "type": "text", "text": "Phone app", "font": { "family": "Inter", "weight": 700 }, "size": 14, "fit": "none", "color": "#71767b", "x": 990, "y": 370, "width": 100 }
+ ]
+}

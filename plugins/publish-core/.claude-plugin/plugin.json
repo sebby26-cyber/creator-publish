@@ -1,0 +1,14 @@
+{
+ "name": "publish-core",
+ "version": "0.3.0",
+ "description": "Creator Publish entry point: first-run tour and setup, per-project saved defaults, and coordination of the design, image, compose and post skills. Saves resumable package status; posts only with explicit per-post approval.",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "publish-core",
+  "orchestrator"
+ ],
+ "license": "GPL-3.0-or-later"
+}

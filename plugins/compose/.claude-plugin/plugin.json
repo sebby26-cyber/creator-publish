@@ -1,0 +1,15 @@
+{
+ "name": "compose",
+ "version": "0.2.0",
+ "description": "visual-composer: deterministic local composition and rendering of supplied assets from a JSON spec. The Node renderer ships inside this plugin (CLI for Claude Code, MCP server for Claude Desktop). No generation.",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "compose",
+  "image",
+  "deterministic"
+ ],
+ "license": "GPL-3.0-or-later"
+}

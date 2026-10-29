@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "photo-title-overlay",
+ "description": "Instagram portrait post: supplied photo + bottom scrim + headline + logo. Replace the two asset paths with real files (absolute, or relative to this file).",
+ "canvas": { "width": 1080, "height": 1350, "background": "#000000" },
+ "output": { "path": "photo-title-overlay.png" },
+ "layers": [
+  { "type": "image", "src": "REPLACE-with-your-photo.jpg", "x": 0, "y": 0, "width": 1080, "height": 1350, "fit": "cover", "position": "center" },
+  { "type": "gradient", "y": 675, "height": 675, "fill": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "rgba(0,0,0,0)" }, { "offset": 1, "color": "rgba(0,0,0,0.8)" } ] } },
+  { "id": "label", "type": "text", "text": "NEW", "font": { "family": "Inter", "weight": 700 }, "size": 28, "letterSpacing": 4, "color": "#ffffff", "x": 80, "y": 900, "width": 400, "background": { "color": "#ff5a36", "padding": [ 10, 16 ], "radius": 6 } },
+  { "id": "headline", "type": "text", "text": "Summer menu is here", "font": { "family": "Anton" }, "size": 150, "transform": "uppercase", "lineHeight": 1.0, "color": "#ffffff", "x": 80, "y": 960, "width": 760, "height": 300, "valign": "bottom" },
+  { "type": "image", "src": "REPLACE-with-your-logo.svg", "x": 900, "y": 1170, "width": 100, "height": 100, "fit": "contain" }
+ ]
+}

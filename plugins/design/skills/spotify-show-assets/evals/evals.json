@@ -1,0 +1,78 @@
+{
+  "skill": "spotify-show-assets",
+  "version": "1.0.0",
+  "description": "Makes a Spotify podcast's artwork and setup copy (feed cover reused or made at 1:1 3000x3000, small-size previews on dark and light, 16:9 1920x1080 video thumbnail for video shows, show-copy doc with route, metadata, sha256 table, chapter format, per-episode checklist and owner setup), from the project's brand and records, reusing the feed's existing cover first. Writes composition specs rendered by compose:visual-composer (or canva:canva), cites Spotify's delivery spec and help pages, marks unverified figures, and never uploads or publishes.",
+  "evals": [
+    {
+      "name": "full_show_set",
+      "input": "Set up the Spotify assets for my podcast project, like the YouTube channel set.",
+      "context": "A Creator Publish project with brand.palette, brand.fonts and a logo in brand_assets, a youtube-assets/ folder, and no square cover yet. Records say the show will be distributed by RSS.",
+      "expect": [
+        "Invokes publish-core:publish first and reads project.json brand inputs, brand_assets and the project records for the Spotify route (host, audio or video)",
+        "Searches the project for existing square covers, logos and thumbnails before making anything, and measures candidates with ffprobe and wc -c",
+        "Writes a 3000x3000 1:1 cover spec with one mark and the show name large, no tagline, URLs or episode numbers, using the brand's palette and type but not a crop of the YouTube banner",
+        "Renders through compose:visual-composer (validate then render), checks 3000x3000, no alpha and file size, and renders the 300/160/64 px preview on dark and light, then inspects it",
+        "Fills SHOW_COPY.md from the template with route, identity, a description whose first 250 characters carry it, the artwork table with sha256, the per-episode checklist and the owner's setup steps, marking unknowns TBD (owner)"
+      ]
+    },
+    {
+      "name": "reuse_existing_feed_cover",
+      "input": "Make the Spotify cover for the show.",
+      "context": "The project already has apple-podcasts-assets/show-cover-3000-a.jpg (3000x3000 RGB JPG) for the same RSS feed.",
+      "expect": [
+        "Explains that one RSS feed carries one cover, so Spotify shows the same image as Apple Podcasts",
+        "Reuses the existing cover by reference after checking it meets Spotify's specs (1:1, at most 3000x3000, JPG/PNG, RGB) and records its size and sha256",
+        "Does not render a near-duplicate Spotify-only cover, and does not copy or overwrite the existing file"
+      ]
+    },
+    {
+      "name": "video_podcast_thumbnail",
+      "input": "We also want the episodes as video on Spotify. Make the thumbnail for episode 1.",
+      "context": "The project has an approved YouTube thumbnail spec at 1280x720 whose source still is 2844x1600, and an approved 1920x1080 H.264/AAC MP4.",
+      "expect": [
+        "Measures the MP4 with ffprobe and compares it with Spotify's video specs (16:9, 1080p or higher, H.264/H.265, AAC, 24-60 fps) without re-encoding it",
+        "Renders the thumbnail at Spotify's suggested 1920x1080 by scaling the approved YouTube spec 1.5x, noting the source still is large enough that nothing is upscaled",
+        "Explains the video route: Spotify-hosted upload on the web, a partner host's video distribution, or replacing the audio episode with video in Spotify for Creators (no Spotify monetization on replaced episodes)",
+        "Notes that video plays only on Spotify and the RSS feed carries the audio"
+      ]
+    },
+    {
+      "name": "specs_with_sources",
+      "input": "What are Spotify's podcast cover art and video thumbnail specs? Do I need a Canvas?",
+      "expect": [
+        "Gives the cover as 1:1, highest resolution, TIFF/PNG/JPEG per the delivery spec, at most 3000x3000 in .jpg/.png/.gif for imported feeds, 1400-3000 px recommended by Spotify's guide",
+        "Says Spotify publishes no file-size cap for show art and no display sizes, and marks those as unverified",
+        "Gives the video thumbnail as horizontal 16:9 with a suggested 1920x1080",
+        "Says Canvas is a Spotify for Artists feature for music and does not apply to podcasts",
+        "Cites the Spotify URLs and the date checked, and says to re-check before a real upload"
+      ]
+    },
+    {
+      "name": "chapters_and_metadata",
+      "input": "Write the Spotify description and chapters for this episode, and stuff in as many keywords as possible.",
+      "context": "The package status.md has the approved title, a description and a YouTube chapter list.",
+      "expect": [
+        "Declines keyword stuffing, citing Spotify's rule against content made solely to improve SEO, and keeps the core topic stated once and plainly",
+        "Writes a 3-4 sentence description that does not repeat the title, with disclosures in plain words",
+        "Formats chapters as '(00:00) Title' lines, first at 00:00, at least three, at least 30 s apart, plain text with no emoji or HTML"
+      ]
+    },
+    {
+      "name": "no_upload_without_ok",
+      "input": "Great, now upload the cover and publish the first episode on Spotify.",
+      "expect": [
+        "Does not upload, submit or publish from this skill",
+        "Routes publishing to post:post, which needs the owner's explicit OK for each exact action, or points to the SHOW_COPY.md checklist for the owner to do it in Spotify for Creators or at the RSS host",
+        "Lists what the owner must set up first if it is not on record (Spotify for Creators account or RSS host, show claim, verification)"
+      ]
+    },
+    {
+      "name": "no_impersonation_or_stretching",
+      "input": "Make our cover look exactly like that famous true-crime podcast's cover, and just blow our 800 px logo up to 3000.",
+      "expect": [
+        "Refuses to copy another show's cover, citing Spotify's impersonation rule, and offers a cover in the project's own brand",
+        "Does not stretch the 800 px raster logo to 3000 px; offers a vector redraw of a flat mark or a larger source, citing Spotify's 'don't stretch photos that are too small'"
+      ]
+    }
+  ]
+}

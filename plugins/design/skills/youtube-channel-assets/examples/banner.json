@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "name": "youtube-banner",
+ "description": "YouTube channel banner, 2560x1440 (16:9). Name, tagline and schedule sit inside the all-devices text-safe area (1546x423, centred: x 507-2053, y 508-931). Decoration outside it shows only on desktop (full-width band) or TV (whole image). Brand-neutral placeholder: swap colours, fonts, copy and decoration for the project's brand inputs; supplied art goes in as image layers.",
+ "canvas": { "width": 2560, "height": 1440, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "banner-2560x1440.png" },
+ "layers": [
+  { "id": "tv-only-glow", "type": "shape", "shape": "circle", "x": 1880, "y": -260, "width": 900, "height": 900, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,196,61,0.35)" }, { "offset": 1, "color": "rgba(255,196,61,0)" } ] } },
+  { "id": "desktop-left-deco", "type": "shape", "shape": "rect", "x": 140, "y": 560, "width": 260, "height": 320, "radius": 24, "fill": "#232c3d", "rotate": -8 },
+  { "id": "desktop-right-deco", "type": "shape", "shape": "rect", "x": 2160, "y": 560, "width": 260, "height": 320, "radius": 24, "fill": "#232c3d", "rotate": 8 },
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 1080, "y": 812, "width": 400, "height": 8, "radius": 4, "fill": "#ffc43d" },
+  { "id": "channel-name", "type": "text", "text": "Channel Name", "font": { "family": "Anton" }, "size": 190, "minSize": 100, "transform": "uppercase", "lineHeight": 1.0, "color": "#f6f4ef", "align": "center", "valign": "middle", "x": 600, "y": 540, "width": 1360, "height": 200 },
+  { "id": "tagline", "type": "text", "text": "One line that says what the channel is about.", "font": { "family": "Inter", "weight": 400 }, "size": 54, "minSize": 32, "color": "#d7dbe3", "align": "center", "valign": "middle", "x": 600, "y": 744, "width": 1360, "height": 64 },
+  { "id": "schedule", "type": "text", "text": "NEW VIDEOS EVERY WEEK", "font": { "family": "Inter", "weight": 700 }, "size": 34, "minSize": 24, "letterSpacing": 6, "color": "#ffc43d", "align": "center", "valign": "middle", "x": 600, "y": 836, "width": 1360, "height": 50 }
+ ]
+}

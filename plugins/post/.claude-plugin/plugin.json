@@ -1,0 +1,18 @@
+{
+ "name": "post",
+ "version": "0.2.0",
+ "description": "Post and schedule finished files: recommends platform, format, caption and hashtags per post, checks the file against platform specs, then posts via a connector or the owner's browser, only after the owner's explicit OK per post. Records each post in the package status. Guidance adapted from social-media-skills (MIT).",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "post",
+  "schedule",
+  "caption",
+  "hashtags",
+  "tiktok",
+  "youtube"
+ ],
+ "license": "GPL-3.0-or-later AND MIT"
+}

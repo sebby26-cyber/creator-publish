@@ -1,0 +1,21 @@
+{
+ "version": 1,
+ "name": "x-avatar-themes",
+ "description": "Review image: the rendered profile photo circle-cropped at about 134 px (desktop profile) and 40 px (timeline) on X's three themes: Default #FFFFFF, Dim #15202B, Lights out #000000 (display sizes and theme colours are unverified working values). Put this spec next to profile-photo-400.png. Review image only, never uploaded.",
+ "canvas": { "width": 660, "height": 250, "background": "#ffffff" },
+ "output": { "path": "previews/avatar-themes.png" },
+ "layers": [
+  { "id": "panel-default", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 220, "height": 250, "fill": "#ffffff" },
+  { "id": "panel-dim", "type": "shape", "shape": "rect", "x": 220, "y": 0, "width": 220, "height": 250, "fill": "#15202b" },
+  { "id": "panel-black", "type": "shape", "shape": "rect", "x": 440, "y": 0, "width": 220, "height": 250, "fill": "#000000" },
+  { "id": "big-default", "type": "image", "src": "profile-photo-400.png", "x": 20, "y": 30, "width": 134, "height": 134, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "big-dim", "type": "image", "src": "profile-photo-400.png", "x": 240, "y": 30, "width": 134, "height": 134, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "big-black", "type": "image", "src": "profile-photo-400.png", "x": 460, "y": 30, "width": 134, "height": 134, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "small-default", "type": "image", "src": "profile-photo-400.png", "x": 166, "y": 124, "width": 40, "height": 40, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "small-dim", "type": "image", "src": "profile-photo-400.png", "x": 386, "y": 124, "width": 40, "height": 40, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "small-black", "type": "image", "src": "profile-photo-400.png", "x": 606, "y": 124, "width": 40, "height": 40, "fit": "cover", "clip": { "shape": "ellipse" } },
+  { "id": "label-default", "type": "text", "text": "Default", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#0f1419", "x": 20, "y": 195, "width": 190 },
+  { "id": "label-dim", "type": "text", "text": "Dim", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#e7e9ea", "x": 240, "y": 195, "width": 190 },
+  { "id": "label-black", "type": "text", "text": "Lights out", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#e7e9ea", "x": 460, "y": 195, "width": 190 }
+ ]
+}

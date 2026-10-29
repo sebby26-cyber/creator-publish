@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "quote-card",
+ "description": "Vector-only quote card (no supplied assets needed). 1080x1080 PNG.",
+ "canvas": { "width": 1080, "height": 1080, "background": { "type": "linear", "angle": 160, "stops": [ { "offset": 0, "color": "#1b1b2f" }, { "offset": 1, "color": "#2e2e4f" } ] } },
+ "output": { "path": "quote-card.png" },
+ "layers": [
+  { "type": "shape", "shape": "circle", "x": 760, "y": -120, "width": 480, "height": 480, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,90,54,0.55)" }, { "offset": 1, "color": "rgba(255,90,54,0)" } ] } },
+  { "id": "mark", "type": "text", "text": "“", "font": { "family": "Anton" }, "size": 260, "fit": "none", "color": "#ff5a36", "x": 90, "y": 150, "width": 200 },
+  { "id": "quote", "type": "text", "text": "Simplicity is not the absence of clutter; it is the presence of clarity.", "font": { "family": "Inter", "weight": 700 }, "size": 72, "minSize": 32, "lineHeight": 1.2, "color": "#ffffff", "x": 90, "y": 340, "width": 900, "height": 420, "valign": "middle" },
+  { "type": "shape", "shape": "line", "x": 90, "y": 830, "x2": 250, "y2": 830, "stroke": { "color": "#ff5a36", "width": 6 } },
+  { "id": "author", "type": "text", "text": "Studio notes, no. 12", "font": { "family": "Inter" }, "size": 34, "color": "#c9c9e0", "x": 90, "y": 870, "width": 900 }
+ ]
+}

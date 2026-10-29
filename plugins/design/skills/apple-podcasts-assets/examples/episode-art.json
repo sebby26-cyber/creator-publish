@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "apple-podcasts-episode-art",
+ "description": "Apple Podcasts episode art, 3000x3000 JPG (RSS accepts 1400-3000; use the largest the source allows without upscaling past about 1.3x). Square, filled edge to edge, NO text and NO logo (Apple shows the titles under it). Brand-neutral placeholder: replace the shapes with one image layer cropped square from the episode's real key art, e.g. { \"type\": \"image\", \"src\": \"<still>\", \"crop\": { \"x\": ..., \"y\": 0, \"width\": <h>, \"height\": <h> }, \"x\": 0, \"y\": 0, \"width\": 3000, \"height\": 3000, \"fit\": \"fill\" }.",
+ "canvas": { "width": 3000, "height": 3000, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#3a4a66" }, { "offset": 1, "color": "#1b2230" } ] } },
+ "output": { "path": "episode-art-3000.jpg", "format": "jpeg", "quality": 90 },
+ "layers": [
+  { "id": "sun", "type": "shape", "shape": "circle", "x": 1900, "y": 600, "width": 600, "height": 600, "fill": "#ffc43d" },
+  { "id": "hill-back", "type": "shape", "shape": "ellipse", "x": -600, "y": 1900, "width": 3200, "height": 1800, "fill": "#2b3850" },
+  { "id": "hill-front", "type": "shape", "shape": "ellipse", "x": 900, "y": 2200, "width": 3200, "height": 1800, "fill": "#232c3d" }
+ ]
+}

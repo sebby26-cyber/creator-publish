@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "name": "youtube-banner-safe-areas",
+ "description": "Review overlay for a rendered 2560x1440 banner: red = text-safe area on all devices (1546x423), blue = desktop full-width band (2560x423), whole canvas = TV. Put this spec next to banner-2560x1440.png (the image path is relative to the spec file). Review image only, never uploaded.",
+ "canvas": { "width": 2560, "height": 1440, "background": "#000000" },
+ "output": { "path": "previews/banner-safe-areas.png" },
+ "layers": [
+  { "id": "banner", "type": "image", "src": "banner-2560x1440.png", "x": 0, "y": 0, "width": 2560, "height": 1440, "fit": "fill" },
+  { "id": "desktop-band", "type": "shape", "shape": "rect", "x": 0, "y": 508, "width": 2560, "height": 423, "stroke": { "color": "#4db5ff", "width": 4, "dash": [24, 12] } },
+  { "id": "safe-area", "type": "shape", "shape": "rect", "x": 507, "y": 508, "width": 1546, "height": 423, "stroke": { "color": "#ff4d4d", "width": 6 } },
+  { "id": "label-tv", "type": "text", "text": "TV: whole image", "font": { "family": "Inter", "weight": 700 }, "size": 40, "color": "#ffffff", "background": { "color": "rgba(0,0,0,0.7)", "padding": [8, 14], "radius": 6 }, "x": 40, "y": 40, "width": 900 },
+  { "id": "label-desktop", "type": "text", "text": "Desktop: full-width band 2560x423", "font": { "family": "Inter", "weight": 700 }, "size": 36, "color": "#ffffff", "background": { "color": "rgba(10,60,110,0.85)", "padding": [8, 14], "radius": 6 }, "x": 40, "y": 446, "width": 1200 },
+  { "id": "label-safe", "type": "text", "text": "Safe area, all devices 1546x423", "font": { "family": "Inter", "weight": 700 }, "size": 36, "color": "#ffffff", "background": { "color": "rgba(140,20,20,0.85)", "padding": [8, 14], "radius": 6 }, "x": 507, "y": 950, "width": 1200 }
+ ]
+}

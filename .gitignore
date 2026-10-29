@@ -1,0 +1,36 @@
+# Media never goes in git: renders, source images, video
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.tif
+*.tiff
+*.psd
+*.mp4
+*.mov
+*.webm
+media/
+
+# Secrets and machine-local config
+.env
+.env.*
+*.pem
+*.key
+*.local.json
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Projects and render output belong in your own folder, never in this repo
+/projects/
+/out/
+creator-publish-out/
+
+# Scratch and OS junk
+*.tmp-*
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc

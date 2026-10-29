@@ -1,0 +1,11 @@
+{
+ "version": 1,
+ "name": "x-link-card",
+ "description": "Link-card image for a page the owner controls (twitter:image for a summary_large_image card): 2:1 at 1200x600 (official: 2:1, min 300x157, max 4096x4096, under 5 MB, JPG/PNG/WEBP/GIF first frame; archived developer docs). X shows the image with a small domain label, so keep words large and central. Not needed for YouTube links: X uses YouTube's thumbnail. Brand-neutral placeholder; set twitter:image:alt (up to 420 characters).",
+ "canvas": { "width": 1200, "height": 600, "background": { "type": "linear", "angle": 135, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "link-card-1200x600.png" },
+ "layers": [
+  { "id": "name", "type": "text", "text": "Show Name", "font": { "family": "Anton" }, "size": 120, "minSize": 72, "transform": "uppercase", "lineHeight": 1.0, "color": "#f6f4ef", "align": "center", "valign": "middle", "x": 200, "y": 180, "width": 800, "height": 150 },
+  { "id": "line", "type": "text", "text": "One line that says what the page is.", "font": { "family": "Inter", "weight": 400 }, "size": 40, "minSize": 28, "color": "#d7dbe3", "align": "center", "x": 200, "y": 350, "width": 800, "height": 56 }
+ ]
+}

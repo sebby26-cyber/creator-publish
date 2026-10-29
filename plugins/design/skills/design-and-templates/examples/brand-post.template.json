@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "name": "brand-post",
+ "description": "Reusable 1080x1350 announcement template. Placeholder strings (double-brace token names) are filled from a brand tokens file before validate/render.",
+ "canvas": { "width": 1080, "height": 1350, "background": "{{brand.bg}}" },
+ "output": { "path": "brand-post.png" },
+ "layers": [
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 80, "y": 120, "width": 120, "height": 14, "radius": 7, "fill": "{{brand.accent}}" },
+  { "id": "kicker", "type": "text", "text": "{{copy.kicker}}", "font": { "family": "{{brand.font.body}}", "weight": 700 }, "size": 30, "letterSpacing": 4, "transform": "uppercase", "color": "{{brand.accent}}", "x": 80, "y": 170, "width": 920 },
+  { "id": "headline", "type": "text", "text": "{{copy.headline}}", "font": { "family": "{{brand.font.display}}" }, "size": 150, "minSize": 72, "lineHeight": 1.02, "transform": "uppercase", "color": "{{brand.text}}", "x": 80, "y": 240, "width": 920, "height": 460, "valign": "top" },
+  { "id": "body", "type": "text", "text": "{{copy.body}}", "font": { "family": "{{brand.font.body}}", "weight": 400 }, "size": 40, "minSize": 28, "lineHeight": 1.35, "color": "{{brand.text.muted}}", "x": 80, "y": 750, "width": 880, "height": 220 },
+  { "id": "cta", "type": "text", "text": "{{copy.cta}}", "font": { "family": "{{brand.font.body}}", "weight": 700 }, "size": 34, "color": "{{brand.on.primary}}", "x": 108, "y": 1130, "width": 560, "background": { "color": "{{brand.primary}}", "padding": [18, 28], "radius": 40 } },
+  { "id": "handle", "type": "text", "text": "{{copy.handle}}", "font": { "family": "{{brand.font.body}}", "weight": 400 }, "size": 28, "align": "right", "color": "{{brand.text.muted}}", "x": 600, "y": 1140, "width": 400 }
+ ]
+}

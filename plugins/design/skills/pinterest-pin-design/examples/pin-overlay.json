@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "name": "pin-overlay",
+ "description": "Pinterest pin 1000x1500 (2:3), vector-only stand-in. In production the bottom layer is the supplied lifestyle photo (image layer, fit cover); the keyword overlay band sits in the top third; domain footer bottom-centre (never bottom-right).",
+ "canvas": { "width": 1000, "height": 1500, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#d9cbb3" }, { "offset": 1, "color": "#8c6f4e" } ] } },
+ "output": { "path": "pin-example.png" },
+ "layers": [
+  { "id": "photo-placeholder", "type": "shape", "shape": "rect", "x": 60, "y": 660, "width": 880, "height": 680, "radius": 24, "fill": "#b59a78", "stroke": { "color": "#f4efe6", "width": 4, "dash": [16, 10] } },
+  { "id": "photo-note", "type": "text", "text": "supplied lifestyle photo goes here", "font": { "family": "Inter", "weight": 400 }, "size": 32, "color": "#2b241c", "x": 60, "y": 660, "width": 880, "height": 680, "align": "center", "valign": "middle" },
+  { "id": "overlay-band", "type": "shape", "shape": "rect", "x": 0, "y": 140, "width": 1000, "height": 460, "fill": "#24452f" },
+  { "id": "keyword-overlay", "type": "text", "text": "Easy Fall Dinner Recipes", "font": { "family": "Anton" }, "size": 140, "minSize": 70, "lineHeight": 1.02, "transform": "uppercase", "color": "#f4efe6", "x": 70, "y": 190, "width": 860, "height": 290, "align": "center", "valign": "middle" },
+  { "id": "sub-line", "type": "text", "text": "one pan · 30 minutes", "font": { "family": "Inter", "weight": 700 }, "size": 40, "color": "#f2c14e", "x": 70, "y": 515, "width": 860, "align": "center" },
+  { "id": "footer-band", "type": "shape", "shape": "rect", "x": 0, "y": 1390, "width": 1000, "height": 110, "fill": "#24452f" },
+  { "id": "domain", "type": "text", "text": "yourblog.com", "font": { "family": "Inter", "weight": 700 }, "size": 34, "color": "#f4efe6", "x": 0, "y": 1390, "width": 1000, "height": 110, "align": "center", "valign": "middle" }
+ ]
+}

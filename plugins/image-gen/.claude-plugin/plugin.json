@@ -1,0 +1,19 @@
+{
+ "name": "image-gen",
+ "version": "0.1.1",
+ "description": "Image prompt craft and routing: image-prompt router plus Nano Banana, FLUX, Ideogram and AI image editing. Writes provider-ready prompts and edit plans for whichever provider you connect (Gemini API, OpenAI, Black Forest Labs, Ideogram, Higgsfield or another host); no default provider. Adapted from social-media-skills (MIT).",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "image",
+  "prompt",
+  "higgsfield",
+  "flux",
+  "ideogram",
+  "nano-banana",
+  "editing"
+ ],
+ "license": "GPL-3.0-or-later AND MIT"
+}

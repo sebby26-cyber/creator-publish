@@ -1,0 +1,16 @@
+{
+ "name": "canva",
+ "version": "0.1.1",
+ "description": "Canva execution via the Canva connector: brand kits, templates, generate, resize, remove background, export. Cloud, editable alternative to compose's deterministic local renderer. Adapted from social-media-skills (MIT).",
+ "author": {
+  "name": "sebby26-cyber"
+ },
+ "keywords": [
+  "creator-publish",
+  "canva",
+  "design",
+  "brand-kit",
+  "resize"
+ ],
+ "license": "GPL-3.0-or-later AND MIT"
+}

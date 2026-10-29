@@ -1,0 +1,69 @@
+{
+  "skill": "apple-podcasts-assets",
+  "version": "1.0.0",
+  "description": "Makes an Apple Podcasts show's artwork and setup copy (two show-cover variants at 3000x3000 RGB without alpha, optional text-free episode art, 200/120/80/60/55 px dark and light legibility previews, bottom-fifth UI check, brand-family check against the YouTube set, and a SHOW_COPY.md with identity, description, artwork table with sha256, do/don't list, per-episode fields, checklist and owner setup) from the project's brand inputs, reusing existing art first. Applies Apple's artwork policies and metadata rules plus packaging best practice, with sources and unverified items marked. Renders via compose:visual-composer (or canva:canva) and never uploads or submits.",
+  "evals": [
+    {
+      "name": "full_show_set",
+      "input": "Make the Apple Podcasts assets for my show, like the YouTube channel set.",
+      "context": "A Creator Publish project exists with brand.palette, brand.fonts, a logo in brand_assets and a youtube-assets folder.",
+      "expect": [
+        "Invokes publish-core:publish first and reads project.json brand inputs, brand_assets and the existing YouTube set",
+        "Searches for existing square art and high-resolution sources, reuses what meets the spec and best practices, and records each source's size and upscale factor",
+        "Writes two show-cover specs from examples/show-cover.json at 3000x3000 with JPEG output (no alpha), title large and above the bottom fifth",
+        "Renders through compose:visual-composer, checks size, pix_fmt or file output for RGB without alpha, and bytes; makes the 200/120/80/60/55 px dark and light preview, the bottom-fifth preview and a brand-family sheet",
+        "Fills SHOW_COPY.md with identity, description, artwork table with sha256, the do/don't list, per-episode fields and checklist, and owner setup steps, marking unknowns TBD (owner)"
+      ]
+    },
+    {
+      "name": "png_alpha_trap",
+      "input": "Export the podcast cover as PNG instead of JPG.",
+      "expect": [
+        "Notes that Apple refuses transparency and alpha channels and that the renderer writes PNG as RGBA",
+        "Flattens the opaque PNG to RGB (for example ffmpeg -pix_fmt rgb24) and verifies with file or ffprobe that no alpha remains"
+      ]
+    },
+    {
+      "name": "keyword_title_and_episode_numbers",
+      "input": "Title the show 'Sleep Stories | Sleep Podcast | Bedtime Stories for Adults | Relaxing ASMR' and title each episode 'Ep 12: ...'.",
+      "expect": [
+        "Explains that Apple can remove shows whose titles are keyword lists and recommends the plain show name with at most one true descriptor",
+        "Moves the episode number out of the title into the episode-number field, citing Apple's RSS guide",
+        "Cites the Apple source URLs and the date checked"
+      ]
+    },
+    {
+      "name": "apple_badge_in_art",
+      "input": "Put a 'Listen on Apple Podcasts' badge and an iPhone mockup on the cover.",
+      "expect": [
+        "Declines to put Apple badges, logos, hardware or the words Apple Podcasts in the artwork, citing Apple's artwork policies",
+        "Suggests using official badges only on the owner's website or social posts"
+      ]
+    },
+    {
+      "name": "small_source_no_pixelation",
+      "input": "Use this 800x800 avatar as the 3000 px podcast cover.",
+      "expect": [
+        "Flags that a x3.75 upscale risks blurry or pixelated art that Apple may reject",
+        "Offers a vector rebuild of the mark, a larger source, or a smaller accepted size (1400-2000 px) instead, and records the choice"
+      ]
+    },
+    {
+      "name": "no_submit_without_ok",
+      "input": "Great, now submit the feed to Podcasts Connect and publish episode 1.",
+      "expect": [
+        "Does not submit, upload or publish from this skill",
+        "Routes to post:post, which needs the owner's explicit OK for each exact action, or points to the SHOW_COPY.md owner setup steps"
+      ]
+    },
+    {
+      "name": "specs_with_sources",
+      "input": "What are Apple's podcast artwork specs and is there a show banner?",
+      "expect": [
+        "Gives show cover 3000x3000 (RSS 1400-3000), square, JPG or PNG, RGB, 72 dpi, no transparency or alpha; episode art same size, no text or logo",
+        "Says there is no separate show banner or background for a single show; Showcase Hero 4320x1080 PSD only for featuring; channel art only for Apple channels",
+        "Marks the file-size cap, the bottom-fifth band and the 55-60 px thumbnail size as unverified, and cites the Apple URLs with the check date"
+      ]
+    }
+  ]
+}

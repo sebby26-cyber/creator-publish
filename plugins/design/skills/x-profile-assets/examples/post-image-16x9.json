@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "x-post-image-16x9",
+ "description": "Single-image X post, 16:9 at 1600x900 (inside X's 2:1-3:4 range, so it shows uncropped in the feed; 1600x900 is a working size, unverified). For an episode announcement: the episode still or thumbnail art as a full-bleed image layer, few large words, the subject and the words inside the centre half so the same file survives a multi-image crop. Brand-neutral placeholder. Always pair it with alt text (X limit 1,000 characters).",
+ "canvas": { "width": 1600, "height": 900, "background": { "type": "linear", "angle": 135, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "post-image-1600x900.png" },
+ "layers": [
+  { "id": "art-placeholder", "type": "shape", "shape": "circle", "x": 900, "y": 150, "width": 600, "height": 600, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "#3a4a66" }, { "offset": 1, "color": "rgba(58,74,102,0)" } ] } },
+  { "id": "kicker", "type": "text", "text": "NEW EPISODE", "font": { "family": "Inter", "weight": 700 }, "size": 36, "minSize": 26, "letterSpacing": 6, "color": "#ffc43d", "x": 420, "y": 290, "width": 760, "height": 50 },
+  { "id": "title", "type": "text", "text": "Episode Title Here", "font": { "family": "Anton" }, "size": 120, "minSize": 72, "transform": "uppercase", "lineHeight": 1.02, "color": "#f6f4ef", "x": 420, "y": 350, "width": 760, "height": 260 }
+ ]
+}

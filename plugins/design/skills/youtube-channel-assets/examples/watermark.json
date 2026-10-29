@@ -1,0 +1,11 @@
+{
+ "version": 1,
+ "name": "youtube-watermark",
+ "description": "YouTube video watermark (branding watermark), 300x300 square PNG with a transparent background (YouTube: square, at least 150x150, under 1 MB). It shows small in the player's corner, so one bold shape reads best; no fine text. Brand-neutral placeholder: swap for the project's supplied logo mark as an image layer (fit contain).",
+ "canvas": { "width": 300, "height": 300 },
+ "output": { "path": "watermark-300.png" },
+ "layers": [
+  { "id": "disc", "type": "shape", "shape": "circle", "x": 10, "y": 10, "width": 280, "height": 280, "fill": "#1b2230", "stroke": { "color": "#f6f4ef", "width": 10 } },
+  { "id": "play", "type": "shape", "shape": "polygon", "points": [ [118, 92], [118, 208], [214, 150] ], "fill": "#ffc43d" }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "version": 1,
+ "name": "x-feed-crops",
+ "description": "Review image: one post image as X's feed would show it alone (16:9, uncropped) and centre-cropped in a 2-image post (about 7:8 each) and a 4-image grid (about 7:4 each). Multi-image crop ratios are unverified third-party values; tapping opens the full image. Put this spec next to post-image-1600x900.png. Review image only, never uploaded.",
+ "canvas": { "width": 1700, "height": 420, "background": "#000000" },
+ "output": { "path": "previews/feed-crops.png" },
+ "layers": [
+  { "id": "single", "type": "image", "src": "post-image-1600x900.png", "x": 20, "y": 40, "width": 560, "height": 315, "fit": "cover", "radius": 16 },
+  { "id": "two-a", "type": "image", "src": "post-image-1600x900.png", "x": 620, "y": 40, "width": 278, "height": 318, "fit": "cover", "position": "center", "radius": 16 },
+  { "id": "two-b", "type": "image", "src": "post-image-1600x900.png", "x": 902, "y": 40, "width": 278, "height": 318, "fit": "cover", "position": "center", "radius": 16 },
+  { "id": "four-a", "type": "image", "src": "post-image-1600x900.png", "x": 1220, "y": 40, "width": 228, "height": 130, "fit": "cover", "radius": 12 },
+  { "id": "four-b", "type": "image", "src": "post-image-1600x900.png", "x": 1452, "y": 40, "width": 228, "height": 130, "fit": "cover", "radius": 12 },
+  { "id": "four-c", "type": "image", "src": "post-image-1600x900.png", "x": 1220, "y": 174, "width": 228, "height": 130, "fit": "cover", "radius": 12 },
+  { "id": "four-d", "type": "image", "src": "post-image-1600x900.png", "x": 1452, "y": 174, "width": 228, "height": 130, "fit": "cover", "radius": 12 },
+  { "id": "l-single", "type": "text", "text": "Single image (16:9, uncropped)", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#e7e9ea", "x": 20, "y": 375, "width": 560 },
+  { "id": "l-two", "type": "text", "text": "2 images (about 7:8 each)", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#e7e9ea", "x": 620, "y": 375, "width": 560 },
+  { "id": "l-four", "type": "text", "text": "4 images (about 7:4 each)", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#e7e9ea", "x": 1220, "y": 375, "width": 460 }
+ ]
+}

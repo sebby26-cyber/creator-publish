@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "name": "x-header",
+ "description": "X header (banner), 1500x500 (3:1). Text sits inside the working text-safe box x 420-1440, y 80-420: X may crop 60 px top and bottom (official), the profile photo covers the lower-left (keep x 0-400, y 300-500 clear; unverified) and the apps draw buttons over the top corners (keep 120 px corners clear; unverified). Brand-neutral placeholder: swap colours, fonts, copy and decoration for the project's brand inputs; supplied art goes in as image layers re-composed at 3:1, never a downscaled YouTube banner.",
+ "canvas": { "width": 1500, "height": 500, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "header-1500x500.png" },
+ "layers": [
+  { "id": "glow", "type": "shape", "shape": "circle", "x": 1060, "y": -260, "width": 760, "height": 760, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,196,61,0.30)" }, { "offset": 1, "color": "rgba(255,196,61,0)" } ] } },
+  { "id": "deco-1", "type": "shape", "shape": "rect", "x": 1220, "y": 150, "width": 170, "height": 230, "radius": 18, "fill": "#232c3d", "rotate": 8 },
+  { "id": "name", "type": "text", "text": "Show Name", "font": { "family": "Anton" }, "size": 120, "minSize": 72, "transform": "uppercase", "lineHeight": 1.0, "color": "#f6f4ef", "align": "left", "valign": "bottom", "x": 440, "y": 110, "width": 760, "height": 150 },
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 444, "y": 280, "width": 160, "height": 6, "radius": 3, "fill": "#ffc43d" },
+  { "id": "tagline", "type": "text", "text": "One line that says what the show is.", "font": { "family": "Inter", "weight": 400 }, "size": 40, "minSize": 28, "color": "#d7dbe3", "align": "left", "valign": "top", "x": 442, "y": 304, "width": 760, "height": 56 },
+  { "id": "handle", "type": "text", "text": "@showhandle", "font": { "family": "Inter", "weight": 700 }, "size": 28, "minSize": 22, "color": "#ffc43d", "align": "left", "valign": "top", "x": 442, "y": 368, "width": 500, "height": 40 }
+ ]
+}

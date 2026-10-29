@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "spotify-video-thumbnail",
+ "description": "Video-podcast episode thumbnail for Spotify: horizontal 16:9 at the suggested 1920x1080. Brand-neutral placeholder: put the episode's real still in as the bottom image layer (fit cover, source at least 1920 px wide so nothing is upscaled), keep 2-4 big words on the side with the most empty space, and the same type and accent as the show's YouTube thumbnails. If the project already has a YouTube thumbnail spec, scale that spec's layers by 1.5 instead (1280x720 to 1920x1080).",
+ "canvas": { "width": 1920, "height": 1080, "background": { "type": "linear", "angle": 135, "stops": [ { "offset": 0, "color": "#2a3550" }, { "offset": 1, "color": "#10141d" } ] } },
+ "output": { "path": "video-thumbnail-1920x1080.png" },
+ "layers": [
+  { "id": "subject-placeholder", "type": "shape", "shape": "circle", "x": 1080, "y": 160, "width": 760, "height": 760, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,196,61,0.9)" }, { "offset": 1, "color": "rgba(255,196,61,0)" } ] } },
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 96, "y": 150, "width": 210, "height": 10, "fill": "#ffc43d" },
+  { "id": "headline", "type": "text", "text": "TWO OR\nFOUR WORDS", "font": { "family": "Anton" }, "size": 210, "minSize": 120, "lineHeight": 0.95, "color": "#ffffff", "align": "left", "valign": "top", "x": 90, "y": 200, "width": 1000, "height": 520, "maxLines": 2 }
+ ]
+}

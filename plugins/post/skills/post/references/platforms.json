@@ -1,0 +1,366 @@
+{
+ "_meta": {
+  "source": "social-media-skills v1.0.1 (skills/platform-specs-and-validation, scheduling-and-queue, caption-writer, hashtag-strategy, tiktok-video-publishing, tiktok-photo-mode, youtube-publishing-and-metadata, youtube-shorts, instagram-reels-publishing, threads-post, linkedin-post-writer, pinterest-seo, thumbnail-design, pinterest-pin-design, story-writer, facebook-strategy, x-growth); Higgsfield TikTok limits from the tiktok_prepare_publish tool schema (2026-10-08). Human-readable copy: plugins/post/skills/post/references/platform-specs.md",
+  "license": "MIT, social-media-skills v1.0.1 (Frank Heijdenrijk)",
+  "note": "absent field = not checked; figures re-verify quarterly"
+ },
+ "platforms": {
+  "youtube": {
+   "name": "YouTube",
+   "aliases": [
+    "yt",
+    "youtube shorts",
+    "yt shorts",
+    "shorts",
+    "youtube studio"
+   ],
+   "formats": {
+    "video": {
+     "media": "video",
+     "aspect_ratios": [
+      "16:9"
+     ],
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "short": {
+     "media": "video",
+     "aspect_ratios": [
+      "9:16",
+      "1:1"
+     ],
+     "max_duration_s": 180,
+     "source": "youtube-publishing-and-metadata/references/youtube-metadata-2026-reality.md; youtube-shorts/references/shorts-algorithm-2026.md"
+    },
+    "thumbnail": {
+     "media": "image",
+     "aspect_ratios": [
+      "16:9"
+     ],
+     "min_width": 1280,
+     "min_height": 720,
+     "max_bytes": 52428800,
+     "extensions": [
+      "jpg",
+      "jpeg",
+      "png"
+     ],
+     "source": "thumbnail-design/references/design-and-test-recipes.md"
+    }
+   },
+   "text": {
+    "title_max_chars": 100,
+    "description_max_chars": 5000,
+    "hashtags_recommended": "a few (first ~3 show above the title)",
+    "links": "clickable",
+    "source": "youtube-publishing-and-metadata/references/youtube-metadata-2026-reality.md; caption-writer/references/platforms.md; hashtag-strategy/references/platform-playbook.md"
+   },
+   "default_format": "video",
+   "best_for": "Search-driven video that compounds for years (metadata is the launchpad, retention keeps it ranking); Shorts are a separate discovery engine judged on viewed-vs-swiped.",
+   "browser_upload_url": "https://studio.youtube.com",
+   "woopsocial_enum": "YOUTUBE"
+  },
+  "tiktok": {
+   "name": "TikTok",
+   "aliases": [
+    "tt",
+    "tik tok",
+    "tiktok photo mode",
+    "photo mode"
+   ],
+   "formats": {
+    "video": {
+     "media": "video",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "min_width": 360,
+     "min_height": 360,
+     "min_duration_s": 3,
+     "max_duration_s": 600,
+     "max_bytes": 1073741824,
+     "extensions": [
+      "mp4",
+      "webm",
+      "mov"
+     ],
+     "min_fps": 23,
+     "max_fps": 60,
+     "source": "higgsfield tiktok_prepare_publish tool schema (2026-10-08); tiktok-video-publishing/references/video-publishing-2026-reality.md (9:16, MP4/MOV, <=1GB)"
+    },
+    "photo": {
+     "media": "image",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "max_width": 1080,
+     "max_height": 1920,
+     "max_bytes": 20971520,
+     "extensions": [
+      "jpg",
+      "jpeg",
+      "webp"
+     ],
+     "source": "higgsfield tiktok_prepare_publish tool schema (2026-10-08); tiktok-photo-mode/references/photo-mode-2026-reality.md (9:16 1080x1920)"
+    }
+   },
+   "text": {
+    "caption_max_chars": 4000,
+    "title_max_chars": 150,
+    "description_max_chars": 4000,
+    "hashtags_recommended": "3-5 as keywords (Photo Mode 1-2)",
+    "links": "bio only",
+    "source": "tiktok-video-publishing/references/video-publishing-2026-reality.md; hashtag-strategy/references/platform-playbook.md; tiktok-photo-mode/references/photo-mode-2026-reality.md; caption-writer/references/platforms.md; title/description: higgsfield tiktok_prepare_publish tool schema (2026-10-08)"
+   },
+   "default_format": "video",
+   "best_for": "Search-led short vertical video (the caption is search, the first 2 seconds decide the swipe); Photo Mode carousels only where the niche suits swiping.",
+   "browser_upload_url": "https://www.tiktok.com/upload",
+   "woopsocial_enum": "TIKTOK"
+  },
+  "instagram": {
+   "name": "Instagram",
+   "aliases": [
+    "ig",
+    "insta",
+    "instagram reels",
+    "reels"
+   ],
+   "formats": {
+    "reel": {
+     "media": "video",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "min_width": 720,
+     "min_height": 1280,
+     "max_duration_s": 180,
+     "max_bytes": 4294967296,
+     "extensions": [
+      "mp4",
+      "mov"
+     ],
+     "source": "instagram-reels-publishing/references/reels-publishing-2026-reality.md"
+    },
+    "feed": {
+     "media": "image",
+     "aspect_ratios": [
+      "1:1",
+      "4:5"
+     ],
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "story": {
+     "media": "image",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "max_bytes": 4194304,
+     "source": "story-writer/references/stories-2026-reality.md"
+    },
+    "story_video": {
+     "media": "video",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "max_duration_s": 60,
+     "max_bytes": 31457280,
+     "source": "story-writer/references/stories-2026-reality.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 2200,
+    "hashtags_max": 5,
+    "hashtags_recommended": "3-5",
+    "links": "bio only",
+    "source": "caption-writer/references/platforms.md; hashtag-strategy/references/platform-playbook.md; scheduling-and-queue/references/platform-publishing.md"
+   },
+   "default_format": "reel",
+   "best_for": "Reels for reach, carousels for saves and authority, Stories for retention; single photos give low discovery.",
+   "woopsocial_enum": "INSTAGRAM"
+  },
+  "x": {
+   "name": "X",
+   "aliases": [
+    "twitter",
+    "x/twitter",
+    "x.com",
+    "tweet"
+   ],
+   "formats": {
+    "image": {
+     "media": "image",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "video": {
+     "media": "video",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 280,
+    "hashtags_recommended": "0-2",
+    "links": "clickable",
+    "source": "caption-writer/references/platforms.md; scheduling-and-queue/references/platform-publishing.md (280 free; up to 25,000 with Premium per x-growth/references/x-2026-reality.md)"
+   },
+   "default_format": "image",
+   "best_for": "A short, punchy single post with the point up front; threads for multi-atom ideas.",
+   "browser_upload_url": "https://x.com/compose/post",
+   "woopsocial_enum": "X"
+  },
+  "linkedin": {
+   "name": "LinkedIn",
+   "aliases": [
+    "li",
+    "linkedin page",
+    "linkedin pages",
+    "linkedin company page"
+   ],
+   "formats": {
+    "image": {
+     "media": "image",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "video": {
+     "media": "video",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 3000,
+    "hashtags_recommended": "3-5",
+    "links": "clickable but body links suppress reach; put the link in the first comment",
+    "source": "caption-writer/references/platforms.md; linkedin-post-writer/references/linkedin-mechanics.md; hashtag-strategy/references/platform-playbook.md"
+   },
+   "default_format": "image",
+   "best_for": "Professional thought leadership from a personal profile: text posts and document carousels that earn dwell time and genuine early comments.",
+   "woopsocial_enum": "LINKEDIN"
+  },
+  "facebook": {
+   "name": "Facebook",
+   "aliases": [
+    "fb",
+    "meta",
+    "facebook page",
+    "facebook reels"
+   ],
+   "formats": {
+    "image": {
+     "media": "image",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "video": {
+     "media": "video",
+     "source": "scheduling-and-queue/references/platform-publishing.md; facebook-strategy/references/facebook-2026-reality.md (all videos are Reels)"
+    },
+    "story": {
+     "media": "image",
+     "aspect_ratios": [
+      "9:16"
+     ],
+     "max_bytes": 4194304,
+     "source": "story-writer/references/stories-2026-reality.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 63206,
+    "hashtags_recommended": "1-2",
+    "links": "clickable",
+    "source": "caption-writer/references/platforms.md; hashtag-strategy/references/platform-playbook.md"
+   },
+   "default_format": "image",
+   "best_for": "Community and local audiences: Reels for discovery, photos for feed engagement, Groups for reach.",
+   "woopsocial_enum": "FACEBOOK"
+  },
+  "pinterest": {
+   "name": "Pinterest",
+   "aliases": [
+    "pin",
+    "pins",
+    "pinterest pin"
+   ],
+   "formats": {
+    "pin": {
+     "media": "image",
+     "aspect_ratios": [
+      "2:3"
+     ],
+     "extensions": [
+      "png",
+      "jpg",
+      "jpeg"
+     ],
+     "source": "pinterest-pin-design/references/design-and-variant-recipes.md (2:3, 1000x1500 recommended); platform-specs-and-validation/references/woopsocial-publish-spec.md (single media)"
+    },
+    "video_pin": {
+     "media": "video",
+     "source": "platform-specs-and-validation/references/woopsocial-publish-spec.md (single image OR single video)"
+    }
+   },
+   "text": {
+    "title_max_chars": 100,
+    "description_max_chars": 500,
+    "hashtags_recommended": "0-2 (keywords instead)",
+    "links": "clickable destination link (<=2048 chars)",
+    "source": "platform-specs-and-validation/references/woopsocial-publish-spec.md; caption-writer/references/platforms.md; pinterest-seo/references/pinterest-seo-2026-reality.md"
+   },
+   "default_format": "pin",
+   "best_for": "Evergreen, searchable how-tos and products with a destination link: keywords and relevance rank, not followers.",
+   "browser_upload_url": "https://www.pinterest.com/pin-builder/",
+   "woopsocial_enum": "PINTEREST"
+  },
+  "threads": {
+   "name": "Threads",
+   "aliases": [
+    "threads.net",
+    "meta threads"
+   ],
+   "formats": {
+    "image": {
+     "media": "image",
+     "source": "threads-post/references/threads-2026-reality.md"
+    },
+    "video": {
+     "media": "video",
+     "max_duration_s": 300,
+     "source": "threads-post/references/threads-2026-reality.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 500,
+    "hashtags_max": 1,
+    "hashtags_recommended": "1 topic tag",
+    "links": "clickable, inline",
+    "source": "threads-post/references/threads-2026-reality.md; scheduling-and-queue/references/platform-publishing.md"
+   },
+   "default_format": "image",
+   "best_for": "Conversation starters (a question, hot take or opinion) that earn replies in a consistent niche.",
+   "woopsocial_enum": "THREADS"
+  },
+  "bluesky": {
+   "name": "Bluesky",
+   "aliases": [
+    "bsky",
+    "bsky.app",
+    "skeet"
+   ],
+   "formats": {
+    "image": {
+     "media": "image",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    },
+    "video": {
+     "media": "video",
+     "source": "scheduling-and-queue/references/platform-publishing.md"
+    }
+   },
+   "text": {
+    "caption_max_chars": 300,
+    "hashtags_recommended": "a few",
+    "links": "clickable",
+    "source": "scheduling-and-queue/references/platform-publishing.md; caption-writer/references/platforms.md; platform-specs-and-validation/references/woopsocial-publish-spec.md (re-verify)"
+   },
+   "default_format": "image",
+   "best_for": "Short, casual, community-forward takes; lead with the point.",
+   "woopsocial_enum": "BLUESKY"
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "x-post-image-1x1",
+ "description": "Single-image X post, square at 1200x1200 (inside X's 2:1-3:4 range, shows uncropped; 1200x1200 is a working size, unverified). Takes more feed height than 16:9 on phones. Good for a quote line or a calm still. Brand-neutral placeholder; pair with alt text.",
+ "canvas": { "width": 1200, "height": 1200, "background": { "type": "linear", "angle": 160, "stops": [ { "offset": 0, "color": "#1b2230" }, { "offset": 1, "color": "#0c1017" } ] } },
+ "output": { "path": "post-image-1200x1200.png" },
+ "layers": [
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 300, "y": 420, "width": 140, "height": 8, "radius": 4, "fill": "#ffc43d" },
+  { "id": "quote", "type": "text", "text": "One short line from the episode that stands on its own.", "font": { "family": "Inter", "weight": 700 }, "size": 64, "minSize": 40, "lineHeight": 1.2, "color": "#f6f4ef", "x": 300, "y": 460, "width": 600, "height": 340 },
+  { "id": "show", "type": "text", "text": "Show Name", "font": { "family": "Inter", "weight": 400 }, "size": 32, "minSize": 24, "color": "#d7dbe3", "x": 300, "y": 830, "width": 600, "height": 50 }
+ ]
+}

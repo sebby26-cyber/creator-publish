@@ -1,0 +1,1851 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "$id": "https://github.com/sebby26-cyber/creator-publish/plugins/compose/renderer/schema/composition.schema.json",
+ "title": "visual-composer composition spec v1",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "version",
+  "canvas",
+  "layers"
+ ],
+ "properties": {
+  "version": {
+   "const": 1
+  },
+  "name": {
+   "type": "string"
+  },
+  "description": {
+   "type": "string"
+  },
+  "canvas": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "width",
+    "height"
+   ],
+   "properties": {
+    "width": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 10000
+    },
+    "height": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 10000
+    },
+    "background": {
+     "oneOf": [
+      {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "type",
+        "stops"
+       ],
+       "properties": {
+        "type": {
+         "enum": [
+          "linear",
+          "radial"
+         ]
+        },
+        "angle": {
+         "type": "number",
+         "description": "linear: CSS-like degrees, 0 = to top, 90 = to right, 180 = to bottom (default)"
+        },
+        "cx": {
+         "type": "number"
+        },
+        "cy": {
+         "type": "number"
+        },
+        "r": {
+         "type": "number",
+         "exclusiveMinimum": 0
+        },
+        "fx": {
+         "type": "number"
+        },
+        "fy": {
+         "type": "number"
+        },
+        "stops": {
+         "type": "array",
+         "minItems": 2,
+         "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+           "offset",
+           "color"
+          ],
+          "properties": {
+           "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           },
+           "color": {
+            "type": "string",
+            "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+            "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+           },
+           "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           }
+          }
+         }
+        }
+       }
+      }
+     ]
+    }
+   }
+  },
+  "output": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "path": {
+     "type": "string",
+     "description": "absolute, or relative to the configured output dir"
+    },
+    "format": {
+     "enum": [
+      "png",
+      "jpeg",
+      "webp"
+     ]
+    },
+    "quality": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 100
+    },
+    "lossless": {
+     "type": "boolean",
+     "description": "webp only"
+    },
+    "background": {
+     "type": "string",
+     "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+     "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+    },
+    "overwrite": {
+     "type": "boolean",
+     "default": true
+    }
+   }
+  },
+  "checks": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "contrast": {
+     "type": "number",
+     "minimum": 1,
+     "description": "min WCAG ratio for normal text (default 4.5; large text uses 3)"
+    }
+   }
+  },
+  "layers": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "type"
+    ],
+    "properties": {
+     "type": {
+      "enum": [
+       "image",
+       "text",
+       "shape",
+       "gradient"
+      ]
+     }
+    },
+    "allOf": [
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "image"
+        }
+       }
+      },
+      "then": {
+       "$ref": "#/definitions/imageLayer"
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "text"
+        }
+       }
+      },
+      "then": {
+       "$ref": "#/definitions/textLayer"
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "shape"
+        }
+       }
+      },
+      "then": {
+       "$ref": "#/definitions/shapeLayer"
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "gradient"
+        }
+       }
+      },
+      "then": {
+       "$ref": "#/definitions/gradientLayer"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "definitions": {
+  "imageLayer": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "src"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "visible": {
+     "type": "boolean",
+     "default": true
+    },
+    "x": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "y": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "width": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "height": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "rotate": {
+     "type": "number",
+     "description": "degrees clockwise about the box centre (or origin)"
+    },
+    "origin": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2,
+     "description": "rotation origin [x,y] in canvas px"
+    },
+    "opacity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "blend": {
+     "enum": [
+      "over",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "colour-dodge",
+      "color-burn",
+      "colour-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "add",
+      "saturate",
+      "xor",
+      "atop",
+      "in",
+      "out",
+      "dest-over",
+      "dest-in",
+      "dest-out",
+      "dest-atop",
+      "source",
+      "dest",
+      "clear",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+     ],
+     "description": "Compositing mode (sharp/libvips). 'hue', 'saturation', 'color', 'luminosity' are accepted by the schema but no backend supports them: render fails with UNSUPPORTED_CAPABILITY."
+    },
+    "effects": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "blur": {
+       "type": "number",
+       "minimum": 0.3,
+       "maximum": 1000,
+       "description": "Gaussian sigma in px"
+      },
+      "brightness": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged"
+      },
+      "saturation": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged, 0 = grey"
+      },
+      "hue": {
+       "type": "number",
+       "description": "hue rotation in degrees"
+      },
+      "lightness": {
+       "type": "number",
+       "description": "additive lightness"
+      },
+      "contrast": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier around mid-grey (128), 1 = unchanged"
+      },
+      "grayscale": {
+       "type": "boolean"
+      },
+      "tint": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "sharpen": {
+       "type": "boolean"
+      }
+     }
+    },
+    "mask": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "src": {
+       "type": "string",
+       "description": "Local image path; stretched to the layer box (fit). Use src OR gradient."
+      },
+      "mode": {
+       "enum": [
+        "alpha",
+        "luminance"
+       ],
+       "default": "luminance"
+      },
+      "fit": {
+       "enum": [
+        "fill",
+        "cover",
+        "contain"
+       ],
+       "default": "fill"
+      },
+      "invert": {
+       "type": "boolean"
+      },
+      "gradient": {
+       "$ref": "#/definitions/gradient",
+       "description": "Gradient mask drawn over the layer box; luminance (white = visible) unless mode alpha (stop opacity = visible)"
+      }
+     },
+     "oneOf": [
+      {
+       "required": [
+        "src"
+       ]
+      },
+      {
+       "required": [
+        "gradient"
+       ]
+      }
+     ]
+    },
+    "clip": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "shape"
+     ],
+     "properties": {
+      "shape": {
+       "enum": [
+        "rect",
+        "ellipse",
+        "path"
+       ]
+      },
+      "radius": {
+       "type": "number",
+       "minimum": 0
+      },
+      "d": {
+       "type": "string",
+       "description": "SVG path in layer-box-local px"
+      }
+     }
+    },
+    "type": {
+     "const": "image"
+    },
+    "src": {
+     "type": "string",
+     "description": "Local file path (absolute, or relative to the spec file / baseDir). URLs are rejected."
+    },
+    "fit": {
+     "enum": [
+      "cover",
+      "contain",
+      "fill",
+      "inside",
+      "outside"
+     ],
+     "default": "cover"
+    },
+    "position": {
+     "enum": [
+      "center",
+      "centre",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "top-left",
+      "top-right",
+      "bottom-left",
+      "bottom-right",
+      "attention",
+      "entropy"
+     ],
+     "default": "center"
+    },
+    "crop": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "x",
+      "y",
+      "width",
+      "height"
+     ],
+     "properties": {
+      "x": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "y": {
+       "type": "integer",
+       "minimum": 0
+      },
+      "width": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "height": {
+       "type": "integer",
+       "minimum": 1
+      }
+     },
+     "description": "Source-pixel rectangle extracted before resize"
+    },
+    "flip": {
+     "type": "boolean",
+     "description": "mirror vertically"
+    },
+    "flop": {
+     "type": "boolean",
+     "description": "mirror horizontally"
+    },
+    "radius": {
+     "type": "number",
+     "minimum": 0,
+     "description": "rounded-corner clip shortcut"
+    }
+   }
+  },
+  "textLayer": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "text",
+    "font",
+    "size",
+    "x",
+    "y",
+    "width"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "visible": {
+     "type": "boolean",
+     "default": true
+    },
+    "x": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "y": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "width": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "height": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "rotate": {
+     "type": "number",
+     "description": "degrees clockwise about the box centre (or origin)"
+    },
+    "origin": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2,
+     "description": "rotation origin [x,y] in canvas px"
+    },
+    "opacity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "blend": {
+     "enum": [
+      "over",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "colour-dodge",
+      "color-burn",
+      "colour-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "add",
+      "saturate",
+      "xor",
+      "atop",
+      "in",
+      "out",
+      "dest-over",
+      "dest-in",
+      "dest-out",
+      "dest-atop",
+      "source",
+      "dest",
+      "clear",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+     ],
+     "description": "Compositing mode (sharp/libvips). 'hue', 'saturation', 'color', 'luminosity' are accepted by the schema but no backend supports them: render fails with UNSUPPORTED_CAPABILITY."
+    },
+    "effects": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "blur": {
+       "type": "number",
+       "minimum": 0.3,
+       "maximum": 1000,
+       "description": "Gaussian sigma in px"
+      },
+      "brightness": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged"
+      },
+      "saturation": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged, 0 = grey"
+      },
+      "hue": {
+       "type": "number",
+       "description": "hue rotation in degrees"
+      },
+      "lightness": {
+       "type": "number",
+       "description": "additive lightness"
+      },
+      "contrast": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier around mid-grey (128), 1 = unchanged"
+      },
+      "grayscale": {
+       "type": "boolean"
+      },
+      "tint": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "sharpen": {
+       "type": "boolean"
+      }
+     }
+    },
+    "mask": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "src": {
+       "type": "string",
+       "description": "Local image path; stretched to the layer box (fit). Use src OR gradient."
+      },
+      "mode": {
+       "enum": [
+        "alpha",
+        "luminance"
+       ],
+       "default": "luminance"
+      },
+      "fit": {
+       "enum": [
+        "fill",
+        "cover",
+        "contain"
+       ],
+       "default": "fill"
+      },
+      "invert": {
+       "type": "boolean"
+      },
+      "gradient": {
+       "$ref": "#/definitions/gradient",
+       "description": "Gradient mask drawn over the layer box; luminance (white = visible) unless mode alpha (stop opacity = visible)"
+      }
+     },
+     "oneOf": [
+      {
+       "required": [
+        "src"
+       ]
+      },
+      {
+       "required": [
+        "gradient"
+       ]
+      }
+     ]
+    },
+    "clip": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "shape"
+     ],
+     "properties": {
+      "shape": {
+       "enum": [
+        "rect",
+        "ellipse",
+        "path"
+       ]
+      },
+      "radius": {
+       "type": "number",
+       "minimum": 0
+      },
+      "d": {
+       "type": "string",
+       "description": "SVG path in layer-box-local px"
+      }
+     }
+    },
+    "type": {
+     "const": "text"
+    },
+    "text": {
+     "type": "string"
+    },
+    "font": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "family"
+     ],
+     "properties": {
+      "family": {
+       "type": "string"
+      },
+      "weight": {
+       "type": "integer",
+       "minimum": 100,
+       "maximum": 1000,
+       "default": 400
+      },
+      "style": {
+       "enum": [
+        "normal",
+        "italic"
+       ],
+       "default": "normal"
+      }
+     }
+    },
+    "size": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "description": "max font size in px"
+    },
+    "minSize": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "description": "smallest size auto-fit may use (default max(6, size/4))"
+    },
+    "fit": {
+     "enum": [
+      "shrink",
+      "none"
+     ],
+     "default": "shrink"
+    },
+    "color": {
+     "type": "string",
+     "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+     "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+    },
+    "fill": {
+     "oneOf": [
+      {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "type",
+        "stops"
+       ],
+       "properties": {
+        "type": {
+         "enum": [
+          "linear",
+          "radial"
+         ]
+        },
+        "angle": {
+         "type": "number",
+         "description": "linear: CSS-like degrees, 0 = to top, 90 = to right, 180 = to bottom (default)"
+        },
+        "cx": {
+         "type": "number"
+        },
+        "cy": {
+         "type": "number"
+        },
+        "r": {
+         "type": "number",
+         "exclusiveMinimum": 0
+        },
+        "fx": {
+         "type": "number"
+        },
+        "fy": {
+         "type": "number"
+        },
+        "stops": {
+         "type": "array",
+         "minItems": 2,
+         "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+           "offset",
+           "color"
+          ],
+          "properties": {
+           "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           },
+           "color": {
+            "type": "string",
+            "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+            "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+           },
+           "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           }
+          }
+         }
+        }
+       }
+      }
+     ]
+    },
+    "align": {
+     "enum": [
+      "left",
+      "center",
+      "right"
+     ],
+     "default": "left"
+    },
+    "valign": {
+     "enum": [
+      "top",
+      "middle",
+      "bottom"
+     ],
+     "default": "top"
+    },
+    "lineHeight": {
+     "type": "number",
+     "exclusiveMinimum": 0,
+     "default": 1.2
+    },
+    "letterSpacing": {
+     "type": "number",
+     "default": 0
+    },
+    "maxLines": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "transform": {
+     "enum": [
+      "none",
+      "uppercase",
+      "lowercase"
+     ]
+    },
+    "stroke": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "color",
+      "width"
+     ],
+     "properties": {
+      "color": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "width": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      "dash": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 0
+       }
+      }
+     }
+    },
+    "shadow": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "x": {
+       "type": "number"
+      },
+      "y": {
+       "type": "number"
+      },
+      "blur": {
+       "type": "number",
+       "minimum": 0
+      },
+      "color": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      }
+     }
+    },
+    "background": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "color"
+     ],
+     "properties": {
+      "color": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "padding": {
+       "oneOf": [
+        {
+         "type": "number",
+         "minimum": 0
+        },
+        {
+         "type": "array",
+         "items": {
+          "type": "number",
+          "minimum": 0
+         },
+         "minItems": 2,
+         "maxItems": 2
+        }
+       ]
+      },
+      "radius": {
+       "type": "number",
+       "minimum": 0
+      }
+     }
+    },
+    "overflow": {
+     "enum": [
+      "error",
+      "warn"
+     ],
+     "default": "error"
+    },
+    "contrast": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "min": {
+       "type": "number",
+       "minimum": 1
+      },
+      "skip": {
+       "type": "boolean"
+      }
+     }
+    }
+   }
+  },
+  "shapeLayer": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "shape"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "visible": {
+     "type": "boolean",
+     "default": true
+    },
+    "x": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "y": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "width": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "height": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "rotate": {
+     "type": "number",
+     "description": "degrees clockwise about the box centre (or origin)"
+    },
+    "origin": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2,
+     "description": "rotation origin [x,y] in canvas px"
+    },
+    "opacity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "blend": {
+     "enum": [
+      "over",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "colour-dodge",
+      "color-burn",
+      "colour-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "add",
+      "saturate",
+      "xor",
+      "atop",
+      "in",
+      "out",
+      "dest-over",
+      "dest-in",
+      "dest-out",
+      "dest-atop",
+      "source",
+      "dest",
+      "clear",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+     ],
+     "description": "Compositing mode (sharp/libvips). 'hue', 'saturation', 'color', 'luminosity' are accepted by the schema but no backend supports them: render fails with UNSUPPORTED_CAPABILITY."
+    },
+    "effects": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "blur": {
+       "type": "number",
+       "minimum": 0.3,
+       "maximum": 1000,
+       "description": "Gaussian sigma in px"
+      },
+      "brightness": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged"
+      },
+      "saturation": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged, 0 = grey"
+      },
+      "hue": {
+       "type": "number",
+       "description": "hue rotation in degrees"
+      },
+      "lightness": {
+       "type": "number",
+       "description": "additive lightness"
+      },
+      "contrast": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier around mid-grey (128), 1 = unchanged"
+      },
+      "grayscale": {
+       "type": "boolean"
+      },
+      "tint": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "sharpen": {
+       "type": "boolean"
+      }
+     }
+    },
+    "mask": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "src": {
+       "type": "string",
+       "description": "Local image path; stretched to the layer box (fit). Use src OR gradient."
+      },
+      "mode": {
+       "enum": [
+        "alpha",
+        "luminance"
+       ],
+       "default": "luminance"
+      },
+      "fit": {
+       "enum": [
+        "fill",
+        "cover",
+        "contain"
+       ],
+       "default": "fill"
+      },
+      "invert": {
+       "type": "boolean"
+      },
+      "gradient": {
+       "$ref": "#/definitions/gradient",
+       "description": "Gradient mask drawn over the layer box; luminance (white = visible) unless mode alpha (stop opacity = visible)"
+      }
+     },
+     "oneOf": [
+      {
+       "required": [
+        "src"
+       ]
+      },
+      {
+       "required": [
+        "gradient"
+       ]
+      }
+     ]
+    },
+    "clip": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "shape"
+     ],
+     "properties": {
+      "shape": {
+       "enum": [
+        "rect",
+        "ellipse",
+        "path"
+       ]
+      },
+      "radius": {
+       "type": "number",
+       "minimum": 0
+      },
+      "d": {
+       "type": "string",
+       "description": "SVG path in layer-box-local px"
+      }
+     }
+    },
+    "type": {
+     "const": "shape"
+    },
+    "shape": {
+     "enum": [
+      "rect",
+      "ellipse",
+      "circle",
+      "line",
+      "polygon",
+      "path"
+     ]
+    },
+    "radius": {
+     "type": "number",
+     "minimum": 0
+    },
+    "x2": {
+     "type": "number"
+    },
+    "y2": {
+     "type": "number"
+    },
+    "points": {
+     "type": "array",
+     "minItems": 3,
+     "items": {
+      "type": "array",
+      "items": {
+       "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+     }
+    },
+    "d": {
+     "type": "string"
+    },
+    "fill": {
+     "oneOf": [
+      {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "type",
+        "stops"
+       ],
+       "properties": {
+        "type": {
+         "enum": [
+          "linear",
+          "radial"
+         ]
+        },
+        "angle": {
+         "type": "number",
+         "description": "linear: CSS-like degrees, 0 = to top, 90 = to right, 180 = to bottom (default)"
+        },
+        "cx": {
+         "type": "number"
+        },
+        "cy": {
+         "type": "number"
+        },
+        "r": {
+         "type": "number",
+         "exclusiveMinimum": 0
+        },
+        "fx": {
+         "type": "number"
+        },
+        "fy": {
+         "type": "number"
+        },
+        "stops": {
+         "type": "array",
+         "minItems": 2,
+         "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+           "offset",
+           "color"
+          ],
+          "properties": {
+           "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           },
+           "color": {
+            "type": "string",
+            "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+            "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+           },
+           "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+           }
+          }
+         }
+        }
+       }
+      }
+     ]
+    },
+    "stroke": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "color",
+      "width"
+     ],
+     "properties": {
+      "color": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "width": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      "dash": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 0
+       }
+      }
+     }
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "shape": {
+        "enum": [
+         "rect",
+         "ellipse",
+         "circle"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "x",
+       "y",
+       "width",
+       "height"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "shape": {
+        "const": "line"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "x",
+       "y",
+       "x2",
+       "y2"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "shape": {
+        "const": "polygon"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "points"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "shape": {
+        "const": "path"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "d"
+      ]
+     }
+    }
+   ]
+  },
+  "gradientLayer": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "fill"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "visible": {
+     "type": "boolean",
+     "default": true
+    },
+    "x": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "y": {
+     "oneOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "string",
+       "pattern": "^-?\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ],
+     "description": "Pixels (number) or \"NN%\" of canvas width (x, width) / height (y, height)"
+    },
+    "width": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "height": {
+     "oneOf": [
+      {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      {
+       "type": "string",
+       "pattern": "^\\d+(\\.\\d+)?(%|px)?$"
+      }
+     ]
+    },
+    "rotate": {
+     "type": "number",
+     "description": "degrees clockwise about the box centre (or origin)"
+    },
+    "origin": {
+     "type": "array",
+     "items": {
+      "type": "number"
+     },
+     "minItems": 2,
+     "maxItems": 2,
+     "description": "rotation origin [x,y] in canvas px"
+    },
+    "opacity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "blend": {
+     "enum": [
+      "over",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "colour-dodge",
+      "color-burn",
+      "colour-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "add",
+      "saturate",
+      "xor",
+      "atop",
+      "in",
+      "out",
+      "dest-over",
+      "dest-in",
+      "dest-out",
+      "dest-atop",
+      "source",
+      "dest",
+      "clear",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+     ],
+     "description": "Compositing mode (sharp/libvips). 'hue', 'saturation', 'color', 'luminosity' are accepted by the schema but no backend supports them: render fails with UNSUPPORTED_CAPABILITY."
+    },
+    "effects": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "blur": {
+       "type": "number",
+       "minimum": 0.3,
+       "maximum": 1000,
+       "description": "Gaussian sigma in px"
+      },
+      "brightness": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged"
+      },
+      "saturation": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier, 1 = unchanged, 0 = grey"
+      },
+      "hue": {
+       "type": "number",
+       "description": "hue rotation in degrees"
+      },
+      "lightness": {
+       "type": "number",
+       "description": "additive lightness"
+      },
+      "contrast": {
+       "type": "number",
+       "minimum": 0,
+       "description": "multiplier around mid-grey (128), 1 = unchanged"
+      },
+      "grayscale": {
+       "type": "boolean"
+      },
+      "tint": {
+       "type": "string",
+       "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+       "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+      },
+      "sharpen": {
+       "type": "boolean"
+      }
+     }
+    },
+    "mask": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "src": {
+       "type": "string",
+       "description": "Local image path; stretched to the layer box (fit). Use src OR gradient."
+      },
+      "mode": {
+       "enum": [
+        "alpha",
+        "luminance"
+       ],
+       "default": "luminance"
+      },
+      "fit": {
+       "enum": [
+        "fill",
+        "cover",
+        "contain"
+       ],
+       "default": "fill"
+      },
+      "invert": {
+       "type": "boolean"
+      },
+      "gradient": {
+       "$ref": "#/definitions/gradient",
+       "description": "Gradient mask drawn over the layer box; luminance (white = visible) unless mode alpha (stop opacity = visible)"
+      }
+     },
+     "oneOf": [
+      {
+       "required": [
+        "src"
+       ]
+      },
+      {
+       "required": [
+        "gradient"
+       ]
+      }
+     ]
+    },
+    "clip": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "shape"
+     ],
+     "properties": {
+      "shape": {
+       "enum": [
+        "rect",
+        "ellipse",
+        "path"
+       ]
+      },
+      "radius": {
+       "type": "number",
+       "minimum": 0
+      },
+      "d": {
+       "type": "string",
+       "description": "SVG path in layer-box-local px"
+      }
+     }
+    },
+    "type": {
+     "const": "gradient"
+    },
+    "fill": {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "type",
+      "stops"
+     ],
+     "properties": {
+      "type": {
+       "enum": [
+        "linear",
+        "radial"
+       ]
+      },
+      "angle": {
+       "type": "number",
+       "description": "linear: CSS-like degrees, 0 = to top, 90 = to right, 180 = to bottom (default)"
+      },
+      "cx": {
+       "type": "number"
+      },
+      "cy": {
+       "type": "number"
+      },
+      "r": {
+       "type": "number",
+       "exclusiveMinimum": 0
+      },
+      "fx": {
+       "type": "number"
+      },
+      "fy": {
+       "type": "number"
+      },
+      "stops": {
+       "type": "array",
+       "minItems": 2,
+       "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+         "offset",
+         "color"
+        ],
+        "properties": {
+         "offset": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         },
+         "color": {
+          "type": "string",
+          "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+          "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+         },
+         "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "gradient": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "type",
+    "stops"
+   ],
+   "properties": {
+    "type": {
+     "enum": [
+      "linear",
+      "radial"
+     ]
+    },
+    "angle": {
+     "type": "number",
+     "description": "linear: CSS-like degrees, 0 = to top, 90 = to right, 180 = to bottom (default)"
+    },
+    "cx": {
+     "type": "number"
+    },
+    "cy": {
+     "type": "number"
+    },
+    "r": {
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "fx": {
+     "type": "number"
+    },
+    "fy": {
+     "type": "number"
+    },
+    "stops": {
+     "type": "array",
+     "minItems": 2,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "offset",
+       "color"
+      ],
+      "properties": {
+       "offset": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       },
+       "color": {
+        "type": "string",
+        "pattern": "^(#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*,\\s*[\\d.]+\\s*(,\\s*[\\d.]+\\s*)?\\)|black|white|red|green|blue|yellow|gray|grey|orange|transparent)$",
+        "description": "Hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb()/rgba(), or black|white|red|green|blue|yellow|gray|orange|transparent"
+       },
+       "opacity": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

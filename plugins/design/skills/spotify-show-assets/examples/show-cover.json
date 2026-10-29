@@ -1,0 +1,13 @@
+{
+ "version": 1,
+ "name": "spotify-show-cover",
+ "description": "Podcast show cover for Spotify (and every directory that reads the same RSS feed): 3000x3000, 1:1, RGB, no transparency. One bold mark and the show name, large, on a simple high-contrast field; no tagline, episode numbers or URLs. Brand-neutral placeholder: swap the mark for the project's supplied logo (image layer, fit contain) and the colours and font for the brand inputs. Export JPG (quality 90) or PNG.",
+ "canvas": { "width": 3000, "height": 3000, "background": { "type": "radial", "cx": 0.5, "cy": 0.38, "r": 0.8, "stops": [ { "offset": 0, "color": "#26324a" }, { "offset": 1, "color": "#141a26" } ] } },
+ "output": { "path": "show-cover-3000.jpg" },
+ "layers": [
+  { "id": "mark-disc", "type": "shape", "shape": "circle", "x": 1000, "y": 420, "width": 1000, "height": 1000, "fill": "#ffc43d" },
+  { "id": "mark-cut", "type": "shape", "shape": "circle", "x": 1260, "y": 560, "width": 720, "height": 720, "fill": "#1e2738" },
+  { "id": "show-name", "type": "text", "text": "SHOW\nNAME", "font": { "family": "Anton" }, "size": 520, "minSize": 300, "lineHeight": 1.0, "letterSpacing": 10, "color": "#f6f4ef", "align": "center", "valign": "top", "x": 200, "y": 1640, "width": 2600, "height": 1100, "maxLines": 2 },
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 1300, "y": 2800, "width": 400, "height": 18, "radius": 9, "fill": "#ffc43d" }
+ ]
+}

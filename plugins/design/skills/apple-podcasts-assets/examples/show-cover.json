@@ -1,0 +1,13 @@
+{
+ "version": 1,
+ "name": "apple-podcasts-show-cover",
+ "description": "Apple Podcasts show cover, 3000x3000 JPG (RGB, no alpha channel: JPEG has none). Show title big and high (capitals about 300 px tall or more so it still reads at 55-60 px), one simple mark, solid not-quite-black background, nothing important in the bottom fifth (y > 2400) or the corners. Brand-neutral placeholder: swap colours, font, title and mark for the project's brand inputs; supplied art goes in as image layers (crop from 3000 px or larger sources; record any upscale).",
+ "canvas": { "width": 3000, "height": 3000, "background": { "type": "linear", "angle": 180, "stops": [ { "offset": 0, "color": "#232c3d" }, { "offset": 1, "color": "#1b2230" } ] } },
+ "output": { "path": "show-cover-3000.jpg", "format": "jpeg", "quality": 90 },
+ "layers": [
+  { "id": "mark-glow", "type": "shape", "shape": "circle", "x": 700, "y": 1150, "width": 1600, "height": 1600, "fill": { "type": "radial", "stops": [ { "offset": 0, "color": "rgba(255,196,61,0.30)" }, { "offset": 1, "color": "rgba(255,196,61,0)" } ] } },
+  { "id": "mark", "type": "shape", "shape": "circle", "x": 1100, "y": 1450, "width": 800, "height": 800, "fill": "#ffc43d" },
+  { "id": "mark-cut", "type": "shape", "shape": "polygon", "points": [ [1380, 1680], [1380, 2020], [1680, 1850] ], "fill": "#1b2230" },
+  { "id": "title", "type": "text", "text": "Show\nName", "font": { "family": "Anton" }, "size": 560, "minSize": 360, "transform": "uppercase", "lineHeight": 1.0, "color": "#f6f4ef", "align": "center", "valign": "middle", "x": 150, "y": 200, "width": 2700, "height": 1150, "maxLines": 2 }
+ ]
+}

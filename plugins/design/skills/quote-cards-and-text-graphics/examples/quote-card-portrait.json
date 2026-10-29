@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "quote-card-portrait",
+ "description": "Original-line quote card, Instagram portrait 1080x1350, vector-only. One idea outsized: the key phrase in the accent colour, brand attribution bottom-left.",
+ "canvas": { "width": 1080, "height": 1350, "background": "#111111" },
+ "output": { "path": "quote-card-example.png" },
+ "layers": [
+  { "id": "accent-bar", "type": "shape", "shape": "rect", "x": 80, "y": 140, "width": 120, "height": 12, "fill": "#ffb703" },
+  { "id": "line-1", "type": "text", "text": "You don't need more followers.", "font": { "family": "Inter", "weight": 700 }, "size": 76, "minSize": 40, "lineHeight": 1.15, "color": "#f5f5f5", "x": 80, "y": 230, "width": 920, "height": 300, "valign": "top" },
+  { "id": "line-2-key-phrase", "type": "text", "text": "You need more trust.", "font": { "family": "Anton" }, "size": 190, "minSize": 80, "lineHeight": 1.0, "transform": "uppercase", "color": "#ffb703", "x": 80, "y": 560, "width": 920, "height": 470, "valign": "top" },
+  { "id": "rule", "type": "shape", "shape": "line", "x": 80, "y": 1130, "x2": 200, "y2": 1130, "stroke": { "color": "#ffb703", "width": 4 } },
+  { "id": "attribution", "type": "text", "text": "— @yourbrand", "font": { "family": "Inter", "weight": 400 }, "size": 34, "color": "#d0d0d0", "x": 80, "y": 1165, "width": 600 }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "name": "creator-publish",
+ "owner": {
+  "name": "sebby26-cyber"
+ },
+ "metadata": {
+  "description": "Creator Publish: instruction-driven publishing-side skills. publish-core (first-run tour, saved per-project defaults, coordinator), compose (visual-composer: deterministic local rendering, renderer included), design (briefs and specs for quote cards, infographics, thumbnails, YouTube channel assets, Apple Podcasts show art, Spotify show assets, X profile and post assets, pins, brand templates), image-gen (image prompt craft and routing), canva (Canva connector execution), post (per-post recommendations, spec checks and owner-approved posting).",
+  "version": "0.6.0"
+ },
+ "plugins": [
+  {
+   "name": "publish-core",
+   "source": "./plugins/publish-core",
+   "description": "Entry point: first-run tour and setup, saved per-project defaults, and coordination of the other skills. Saves resumable package status; posts only with explicit per-post approval.",
+   "version": "0.3.0",
+   "category": "media"
+  },
+  {
+   "name": "compose",
+   "source": "./plugins/compose",
+   "description": "visual-composer: deterministic local composition and rendering of supplied assets from a JSON spec. The renderer ships inside the plugin (Node CLI and MCP server). No generation.",
+   "version": "0.2.0",
+   "category": "media"
+  },
+  {
+   "name": "design",
+   "source": "./plugins/design",
+   "description": "Design briefs for static social graphics: quote cards and text graphics, infographics and data viz, YouTube thumbnails, YouTube channel assets (banner, profile picture, watermark, end-screen guide, channel copy), Apple Podcasts show assets (show cover, episode art, small-size previews, show copy), Spotify show assets (feed cover reuse, video-podcast thumbnail, small-size previews, show copy), X profile and post assets (header, profile photo, post and pinned images, alt text, X copy), Pinterest pins, and a brand template system. Writes the brief and a visual-composer composition spec; rendering is compose (or Canva). Mostly adapted from social-media-skills (MIT).",
+   "version": "0.2.0",
+   "category": "media"
+  },
+  {
+   "name": "image-gen",
+   "source": "./plugins/image-gen",
+   "description": "Image prompt craft and routing: image-prompt router plus Nano Banana, FLUX, Ideogram and AI image editing. Writes provider-ready prompts and edit plans for whichever provider you connect (Gemini API, OpenAI, Black Forest Labs, Ideogram, Higgsfield or another host); no default provider. Adapted from social-media-skills (MIT).",
+   "version": "0.1.1",
+   "category": "media"
+  },
+  {
+   "name": "canva",
+   "source": "./plugins/canva",
+   "description": "Canva execution via the Canva connector: brand kits, templates, generate, resize, remove background, export. Cloud, editable alternative to compose's deterministic local renderer. Adapted from social-media-skills (MIT).",
+   "version": "0.1.1",
+   "category": "media"
+  },
+  {
+   "name": "post",
+   "source": "./plugins/post",
+   "description": "post: recommends platform/format/caption/hashtags per post, checks the file against platform specs, posts or schedules only after the owner's explicit OK per post, records it in the package status. Adapted from social-media-skills (MIT).",
+   "version": "0.2.0",
+   "category": "media"
+  }
+ ]
+}

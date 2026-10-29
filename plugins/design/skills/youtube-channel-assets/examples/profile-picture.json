@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "name": "youtube-profile-picture",
+ "description": "YouTube profile picture, 800x800 square (YouTube crops it to a circle and renders it at 98x98). Keep the mark inside the inner circle; a thin ring keeps the edge visible on the white (light-mode) page. Brand-neutral placeholder: swap the initials for the project's supplied logo as an image layer (fit contain).",
+ "canvas": { "width": 800, "height": 800, "background": "#ffffff" },
+ "output": { "path": "profile-picture-800.png" },
+ "layers": [
+  { "id": "disc", "type": "shape", "shape": "circle", "x": 0, "y": 0, "width": 800, "height": 800, "fill": "#1b2230" },
+  { "id": "ring", "type": "shape", "shape": "circle", "x": 40, "y": 40, "width": 720, "height": 720, "stroke": { "color": "#ffc43d", "width": 18 } },
+  { "id": "initials", "type": "text", "text": "CN", "font": { "family": "Anton" }, "size": 380, "minSize": 200, "lineHeight": 1.0, "color": "#f6f4ef", "align": "center", "valign": "middle", "x": 160, "y": 160, "width": 480, "height": 480 }
+ ]
+}

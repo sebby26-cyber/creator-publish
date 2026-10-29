@@ -1,0 +1,14 @@
+{
+ "version": 1,
+ "name": "youtube-end-screen-overlay",
+ "description": "Review image: the end-screen slots drawn over a frame grabbed from the video's actual outro at the chosen end-screen start, to check that no element covers key picture or text. Put this spec next to outro-frame.png (grab it with ffmpeg at the chosen start time). Keep the slot boxes identical to the end-screen template so the guide and the check agree. Edit the timing label to the chosen window. Review image only, never uploaded or burned into the video.",
+ "canvas": { "width": 1920, "height": 1080, "background": "#000000" },
+ "output": { "path": "previews/end-screen-overlay.png" },
+ "layers": [
+  { "id": "outro-frame", "type": "image", "src": "outro-frame.png", "x": 0, "y": 0, "width": 1920, "height": 1080, "fit": "contain" },
+  { "id": "slot-video-1", "type": "shape", "shape": "rect", "x": 1000, "y": 170, "width": 760, "height": 428, "radius": 12, "fill": "rgba(77,181,255,0.25)", "stroke": { "color": "#4db5ff", "width": 4, "dash": [18, 10] } },
+  { "id": "slot-video-2", "type": "shape", "shape": "rect", "x": 1000, "y": 640, "width": 512, "height": 288, "radius": 12, "fill": "rgba(77,181,255,0.25)", "stroke": { "color": "#4db5ff", "width": 4, "dash": [18, 10] } },
+  { "id": "slot-subscribe", "type": "shape", "shape": "circle", "x": 560, "y": 690, "width": 200, "height": 200, "fill": "rgba(255,92,138,0.25)", "stroke": { "color": "#ff5c8a", "width": 4, "dash": [14, 8] } },
+  { "id": "timing", "type": "text", "text": "End screen 00:20.000 to 00:40.000 (20.0 s)", "font": { "family": "Inter", "weight": 700 }, "size": 32, "color": "#ffffff", "background": { "color": "rgba(0,0,0,0.75)", "padding": [10, 16], "radius": 6 }, "x": 40, "y": 40, "width": 1000 }
+ ]
+}

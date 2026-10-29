@@ -1,0 +1,8 @@
+{
+  "models": { "image": null, "edit": null },
+  "tools": { "prefer": [], "avoid": [] },
+  "providers": { "default": null },
+  "budget": { "credits": { "per_step_max": null, "per_run_max": null } },
+  "approvals": { "paid_steps": "ask" },
+  "output": { "formats": ["png"], "variants": 3, "platforms": [] }
+}

@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "name": "spotify-cover-small-sizes",
+ "description": "Review image only, never uploaded: the rendered show cover at 300, 160 and 64 px on a dark (#121212) and a light (#ffffff) page. Spotify publishes neither its display sizes nor its page colours, so these are working values (unverified) for a show-page header, a grid card and a list or search row. Put this spec in previews/ next to the cover's folder, or change src to the cover's path.",
+ "canvas": { "width": 1040, "height": 470, "background": "#ffffff" },
+ "output": { "path": "cover-small-sizes.png" },
+ "layers": [
+  { "id": "dark-panel", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 520, "height": 470, "fill": "#121212" },
+  { "id": "dark-300", "type": "image", "src": "../show-cover-3000.jpg", "x": 24, "y": 40, "width": 300, "height": 300, "fit": "cover", "radius": 8 },
+  { "id": "dark-160", "type": "image", "src": "../show-cover-3000.jpg", "x": 344, "y": 40, "width": 160, "height": 160, "fit": "cover", "radius": 6 },
+  { "id": "dark-64", "type": "image", "src": "../show-cover-3000.jpg", "x": 344, "y": 240, "width": 64, "height": 64, "fit": "cover", "radius": 4 },
+  { "id": "dark-label", "type": "text", "text": "dark: 300 / 160 / 64 px", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#f1f1f1", "x": 24, "y": 400, "width": 480 },
+  { "id": "light-300", "type": "image", "src": "../show-cover-3000.jpg", "x": 544, "y": 40, "width": 300, "height": 300, "fit": "cover", "radius": 8 },
+  { "id": "light-160", "type": "image", "src": "../show-cover-3000.jpg", "x": 864, "y": 40, "width": 160, "height": 160, "fit": "cover", "radius": 6 },
+  { "id": "light-64", "type": "image", "src": "../show-cover-3000.jpg", "x": 864, "y": 240, "width": 64, "height": 64, "fit": "cover", "radius": 4 },
+  { "id": "light-label", "type": "text", "text": "light: 300 / 160 / 64 px", "font": { "family": "Inter", "weight": 700 }, "size": 18, "fit": "none", "color": "#121212", "x": 544, "y": 400, "width": 480 }
+ ]
+}

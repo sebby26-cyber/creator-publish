@@ -1,0 +1,21 @@
+{
+  "name": "creator-publish-renderer",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Deterministic local composition/rendering of supplied assets (visual-composer core, CLI + MCP).",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "test": "echo \"No test suite is shipped with this repository.\""
+  },
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "ajv": "8.20.0",
+    "opentype.js": "2.0.0",
+    "sharp": "0.35.5"
+  }
+}

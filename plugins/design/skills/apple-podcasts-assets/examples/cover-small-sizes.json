@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "name": "apple-podcasts-cover-small-sizes",
+ "description": "Review image only, never uploaded: the rendered show cover at 200, 120, 80, 60 and 55 px with rounded corners (radius 6%) on a dark (#1c1c1e) and a light (#ffffff) page. Put this spec in previews/ next to the cover's folder. Page colours, corner radius and the 55-60 px small-thumbnail size are working assumptions, not Apple figures. Pass: the show title reads at 60 and 55 px on both pages and the cover edge is visible on both.",
+ "canvas": { "width": 820, "height": 560, "background": "#ffffff" },
+ "output": { "path": "cover-small-sizes-dark-light.png", "format": "png" },
+ "layers": [
+  { "id": "dark-panel", "type": "shape", "shape": "rect", "x": 0, "y": 0, "width": 820, "height": 280, "fill": "#1c1c1e" },
+  { "id": "light-panel", "type": "shape", "shape": "rect", "x": 0, "y": 280, "width": 820, "height": 280, "fill": "#ffffff" },
+  { "id": "dark-200", "type": "image", "src": "../show-cover-3000.jpg", "x": 40, "y": 20, "width": 200, "height": 200, "fit": "cover", "clip": { "shape": "rect", "radius": 12 } },
+  { "id": "dark-120", "type": "image", "src": "../show-cover-3000.jpg", "x": 290, "y": 100, "width": 120, "height": 120, "fit": "cover", "clip": { "shape": "rect", "radius": 7 } },
+  { "id": "dark-80", "type": "image", "src": "../show-cover-3000.jpg", "x": 460, "y": 140, "width": 80, "height": 80, "fit": "cover", "clip": { "shape": "rect", "radius": 5 } },
+  { "id": "dark-60", "type": "image", "src": "../show-cover-3000.jpg", "x": 590, "y": 160, "width": 60, "height": 60, "fit": "cover", "clip": { "shape": "rect", "radius": 4 } },
+  { "id": "dark-55", "type": "image", "src": "../show-cover-3000.jpg", "x": 700, "y": 165, "width": 55, "height": 55, "fit": "cover", "clip": { "shape": "rect", "radius": 3 } },
+  { "id": "light-200", "type": "image", "src": "../show-cover-3000.jpg", "x": 40, "y": 300, "width": 200, "height": 200, "fit": "cover", "clip": { "shape": "rect", "radius": 12 } },
+  { "id": "light-120", "type": "image", "src": "../show-cover-3000.jpg", "x": 290, "y": 380, "width": 120, "height": 120, "fit": "cover", "clip": { "shape": "rect", "radius": 7 } },
+  { "id": "light-80", "type": "image", "src": "../show-cover-3000.jpg", "x": 460, "y": 420, "width": 80, "height": 80, "fit": "cover", "clip": { "shape": "rect", "radius": 5 } },
+  { "id": "light-60", "type": "image", "src": "../show-cover-3000.jpg", "x": 590, "y": 440, "width": 60, "height": 60, "fit": "cover", "clip": { "shape": "rect", "radius": 4 } },
+  { "id": "light-55", "type": "image", "src": "../show-cover-3000.jpg", "x": 700, "y": 445, "width": 55, "height": 55, "fit": "cover", "clip": { "shape": "rect", "radius": 3 } },
+  { "id": "label-dark", "type": "text", "text": "200 / 120 / 80 / 60 / 55 px, dark page", "font": { "family": "Inter", "weight": 700 }, "size": 16, "color": "#f2f2f7", "align": "left", "x": 40, "y": 240, "width": 740, "height": 24, "maxLines": 1 },
+  { "id": "label-light", "type": "text", "text": "200 / 120 / 80 / 60 / 55 px, light page", "font": { "family": "Inter", "weight": 700 }, "size": 16, "color": "#1c1c1e", "align": "left", "x": 40, "y": 520, "width": 740, "height": 24, "maxLines": 1 }
+ ]
+}
