@@ -4,6 +4,7 @@
 
 **Ask for a thumbnail, quote card, pin or banner in plain words. Skills design it, render it exactly on your machine, remember your brand and settings per project, and post only when you say so.**
 
+[![validate](https://github.com/sebby26-cyber/creator-publish/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/sebby26-cyber/creator-publish/actions/workflows/validate.yml)
 [![License: GPL v3+](https://img.shields.io/badge/License-GPLv3+-22C7B8.svg?style=flat-square&labelColor=0E1116)](LICENSE)
 [![Claude Code plugin marketplace](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-22C7B8.svg?style=flat-square&labelColor=0E1116)](https://docs.claude.com/en/docs/claude-code/plugins)
 [![Node >= 20.9](https://img.shields.io/badge/node-%3E%3D20.9-22C7B8?style=flat-square&labelColor=0E1116&logo=node.js&logoColor=white)](plugins/compose/renderer/package.json)
@@ -219,8 +220,9 @@ plugins/
     skills/visual-composer/      SKILL.md, references/, examples/
     renderer/                    Node CLI + MCP, schema, bundled fonts, package-lock.json
   design/ image-gen/ canva/ post/   skills (post: references/platforms.json)
-assets/brand/  BRAND.md          banner, mark, social preview, brand sheet, how-it-works diagram and spec
-LICENSE  NOTICE.md  CONTRIBUTING.md
+assets/brand/  BRAND.md          banner, mark, plugin icons, social preview, brand sheet, how-it-works diagram and spec
+LICENSE  NOTICE.md  CONTRIBUTING.md  CODE_OF_CONDUCT.md  SECURITY.md  CHANGELOG.md
+.github/       CI workflow (validate), issue and PR templates, Dependabot
 ```
 
 Each plugin is self-contained: only its own folder is copied on install.
@@ -234,7 +236,9 @@ Each plugin is self-contained: only its own folder is copied on install.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Visuals follow [BRAND.md](BRAND.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Report security problems
+privately as described in [SECURITY.md](SECURITY.md). Release notes are in [CHANGELOG.md](CHANGELOG.md). Visuals
+follow [BRAND.md](BRAND.md).
 
 ## License
 

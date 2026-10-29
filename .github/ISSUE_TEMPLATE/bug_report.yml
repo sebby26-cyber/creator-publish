@@ -1,0 +1,55 @@
+name: Bug report
+description: A skill, the renderer or a manifest does something wrong.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not paste API keys, tokens, private file paths or personal media.
+        Security problems go through the Security tab (private reporting), not here.
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options:
+        - publish-core
+        - compose (visual-composer / renderer)
+        - design
+        - image-gen
+        - canva
+        - post
+        - marketplace / docs
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Skill or file
+      placeholder: e.g. design:thumbnail-design, plugins/compose/renderer/src/cli.js
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you asked for, what Claude or the renderer did, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The prompt you used, or the composition spec and command (trim it to the smallest case).
+      render: text
+  - type: textarea
+    id: output
+    attributes:
+      label: Relevant output
+      description: Error codes or JSON from the renderer (`ok`, `errors`), with paths shortened.
+      render: text
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `claude --version`, `node --version`, `node <compose>/renderer/src/cli.js health --compact`, and your OS.
+      render: text
+    validations:
+      required: true

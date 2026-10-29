@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a new skill, platform, renderer feature or improvement.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: For anything larger than a small fix, an issue first is the way to start (see CONTRIBUTING.md).
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options:
+        - publish-core
+        - compose (visual-composer / renderer)
+        - design
+        - image-gen
+        - canva
+        - post
+        - new plugin
+        - marketplace / docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you want to make or do
+      description: The request you would type, and what is missing today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: What the skill or renderer should produce. Link official platform specs if it is about sizes or limits.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

@@ -15,5 +15,6 @@
   "nano-banana",
   "editing"
  ],
- "license": "GPL-3.0-or-later AND MIT"
+ "license": "GPL-3.0-or-later AND MIT",
+ "icon": ".claude-plugin/icon.png"
 }

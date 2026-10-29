@@ -1,0 +1,59 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: plugins/compose/renderer/package-lock.json
+
+      - name: Manifests, SKILL.md frontmatter and relative links
+        run: python3 .github/scripts/check_repo.py
+
+      - name: claude plugin validate (marketplace and every plugin)
+        env:
+          DISABLE_AUTOUPDATER: "1"
+        run: |
+          npm install -g --no-audit --no-fund @anthropic-ai/claude-code@2.1.308
+          claude plugin validate .
+          for p in plugins/*/; do claude plugin validate "$p"; done
+
+      - name: Install the compose renderer
+        working-directory: plugins/compose/renderer
+        run: npm ci --no-audit --no-fund
+
+      - name: Renderer health check
+        working-directory: plugins/compose/renderer
+        run: node src/cli.js health --compact | tee "$RUNNER_TEMP/health.json" && grep -q '"ok":true' "$RUNNER_TEMP/health.json"
+
+      - name: Sample renders (photo-title-overlay is skipped; it needs your own photo and logo)
+        working-directory: plugins/compose/renderer
+        run: |
+          for spec in ../skills/visual-composer/examples/*.json; do
+            name=$(basename "$spec" .json)
+            if [ "$name" = photo-title-overlay ]; then echo "skip $name"; continue; fi
+            node src/cli.js render "$spec" --out "$RUNNER_TEMP/$name.png" --compact > "$RUNNER_TEMP/$name.json"
+            grep -q '"ok":true' "$RUNNER_TEMP/$name.json" || { cat "$RUNNER_TEMP/$name.json"; exit 1; }
+            echo "rendered $name"
+          done

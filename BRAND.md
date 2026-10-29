@@ -22,8 +22,9 @@ Files in `assets/brand/`:
 |---|---|
 | `mark.svg` | Square tile icon (512 viewBox 64). Avatars, docs, plugin listings. |
 | `banner.svg` | 1280 x 320 README header. |
-| `social-preview.svg` | 1280 x 640 source for the GitHub social preview. Export to PNG and upload under **Settings > Social preview** (GitHub does not read it from the repo, and PNGs are git-ignored here). |
+| `social-preview.svg` | 1280 x 640 source for the GitHub social preview. Export to PNG and upload under **Settings > Social preview** (GitHub does not read it from the repo, and PNGs other than the plugin icons are git-ignored here). |
 | `brand-sheet.svg` | The visual spec. |
+| `icons/<plugin>.svg` | 1024 x 1024 plugin listing icons: the mark with one ink glyph in the accent node (publish-core hub ring, compose layers, design nib, image-gen sparkle, canva arc, post arrow). Rendered to `plugins/<plugin>/.claude-plugin/icon.png` with `rsvg-convert -w 1024 -h 1024 assets/brand/icons/<plugin>.svg -o plugins/<plugin>/.claude-plugin/icon.png`; these six PNGs are the only PNGs in git. |
 | `how-it-works.svg` | 1280 x 440 diagram for the README "How it works" section. Same ink canvas, dot grid, outlined type and single accent as the banner. |
 
 ## The mark

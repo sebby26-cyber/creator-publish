@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/sebby26-cyber/creator-publish/security/advisories/new
+    about: Report security problems privately, not in a public issue.
+  - name: Claude Code plugin documentation
+    url: https://docs.claude.com/en/docs/claude-code/plugins
+    about: Questions about installing or running Claude Code plugins in general.

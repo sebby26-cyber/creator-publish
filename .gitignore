@@ -34,3 +34,6 @@ creator-publish-out/
 Thumbs.db
 __pycache__/
 *.pyc
+
+# Plugin listing icons are the one PNG exception (rendered from assets/brand/icons/*.svg)
+!plugins/*/.claude-plugin/icon.png

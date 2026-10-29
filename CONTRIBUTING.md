@@ -68,4 +68,5 @@ By contributing you agree your work is licensed under GPL-3.0-or-later, like the
 ## Visuals
 
 Banners, icons and graphics follow [BRAND.md](BRAND.md): one accent per repo, the shared palette and type, and SVG
-with text outlined to paths. PNG and other media stay out of git; upload the social preview in the repo settings.
+with text outlined to paths. PNG and other media stay out of git (the one exception: the six plugin icons, rendered from
+`assets/brand/icons/`); upload the social preview in the repo settings.
